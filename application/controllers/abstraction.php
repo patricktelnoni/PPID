@@ -19,7 +19,9 @@ class abstraction extends CI_Controller {
 			redirect ("c_login");
 		}
 		else{
-			
+			/*
+			 * Rediret to some action
+			 * */
 		}
 	}
 }
