@@ -1,24 +1,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Perkantas Jawa Timur</title>
-<meta name="description" content="<?=substr("Perkantas memuridkan, membina, mempersiapkan siswa dan mahasiswa Kristen, menjadi pemimpin masa depan. Moto Perkantas: Student Today Leader Tomorrow. Perkantas Indonesia",0,160)?> "/>
-<meta name="keywords" content="perkantas,perkantas jatim, pemuridan, ktb, kelompok tumbuh bersama, kristen, christian, student ministry, jawa timur, surabaya, pelayanan, mahasiswa, siswa, alumni, menulis"/>
-<meta name="google-site-verification" content="SPBSm3NRgbYLLVLYjMNTYMOdRKMyciz9lUbX1dlF6zQ" />
+<title>Web PPID Bontang</title>
 <link rel="shortcut icon" href="./favicon.ico"/>
 <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
-<link href="./styles/style.css" rel="stylesheet" type="text/css" />
-<link href="./styles/menu.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="./styles/dropdown/menuatas.css" />
+<link href="<?=base_url()?>styles/style.css" rel="stylesheet" type="text/css" />
+<link href="<?=base_url()?>styles/menu.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>styles/dropdown/menuatas.css" />
 <style type="text/css">
 <!--
 .style1 {font-size: 18px}
 -->
 </style>
-<script type="text/javascript" src="./library/jquery/jquery.js"></script>
-<script type="text/javascript" src="./library/jquery/jquery.cycle.min.js"></script>
-<script type="text/javascript" src="./library/jquery/jquery.cycle.all.min.js"></script>
-<link rel="stylesheet" href="./styles/slideshowtheme.css" type="text/css" media="screen" charset="utf-8" />
+<!--
+.style1 {font-size: 18px}
+-->
+</style>
+<script type="text/javascript" src="<?=base_url()?>library/jquery/jquery.js"></script>
+<script type="text/javascript" src="<?=base_url()?>library/jquery/jquery.cycle.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>library/jquery/jquery.cycle.all.min.js"></script>
+<link rel="stylesheet" href="<?=base_url()?>styles/slideshowtheme.css" type="text/css" media="screen" charset="utf-8" />
 <script type="text/javascript">
 $(document).ready(function() {
 $('.slideshow').before('<div id="navg">').cycle({
