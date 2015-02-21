@@ -50,40 +50,40 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 			<div id="cse" style="width:100%;height"></div> 
 			<div class="contentMain">		
 				<div class="slideshow">
-					<?php foreach ($data as $main){?>
+					
 					<div>
 						<table class="contentToday">
 							<tr>
-								<td style="padding:10px 10px 0 10px"><img src="<?=$main['imagePath']?>" width="370" height="235" /></td>
+								<td style="padding:10px 10px 0 10px"><img src="" width="370" height="235" /></td>
 							</tr>
 							<tr>
 								<td style="padding-left:10px">
-									<b><u><?=$main['contentCategory']?></u></b><br>
+									<b><u>></u></b><br>
 									<span class="divTitleCenter1x">
-										<a class="titleCenter" href="index.php?g=<?=$main['contentTarget']?>&id=<?=$main['contentId']?>"><u><?=!empty($main['name'])?$main['name']:$main['title']?></u></a>
+										<a class="titleCenter" href="index.php?g=>"><u></u></a>
 									</span>	
 								</td>
 							</tr>
 						</table>
 					</div>
-					<?php }?>
+					
 				 </div>
 				<div class="mainBatas"></div>
 				<div class="listTopik">
 				<span style="color:#a8480e"><B><u>HEADLINE</u></B></span><br>
-					<?php foreach ($data as $main){?>
-					<div style="padding-top:6px"><a class="hrefTopik" href="index.php?g=<?=$main['contentTarget']?>&id=<?=$main['contentId']?>"><span style="font-weight:bold" title="<?=!empty($main['name'])?$main['name']:$main['title']?>"><?=substr(!empty($main['name'])?$main['name']:$main['title'],0,54)?></span></a><br>
-					<span class="textRight"><?=substr($main['description'],0,72)."..."?></span>
+					
+					<div style="padding-top:6px"><a class="hrefTopik"><span style="font-weight:bold" title=""></span></a><br>
+					<span class="textRight"></span>
 					</div>
 					<!--<br>
-					<a class="hrefTopik" href="index.php?g=<?=$main['contentTarget']?>&id=<?=$main['contentId']?>"><u>more</u>
+					<a class="hrefTopik" href="index.php?g="><u>more</u>
 					</a>-->
-					<?php }?>
+					
 				</div>
 			</div>
              <div class="clearboth"></div>    
 			</td>
-			<?php include("view/menukanan.php"); ?>   
+			<?php $this->load->view('menukanan');?>  
 		</tr>
          <tr>
 				<!-- ISI BAGIAN KIRI -->
