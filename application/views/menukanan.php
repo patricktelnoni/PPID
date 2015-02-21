@@ -176,7 +176,7 @@
 		<div class="contentRight-3">			
 				
 					<a class="titleTextRight" href="index.php?g=news&id=" title=""?></a><br>
-						<span class="textRight">, Dibaca:  Komentar"?></span><br>
+						<span class="textRight">, Dibaca:  Komentar</span><br>
 						
 						
 						<div>
@@ -199,7 +199,7 @@
 					<a class="titleTextRight" href="index.php?g=articles&id=" title=""></a><br>
 						<span class="textRight">oleh: </span><br>
 						<div style="height:5px"></div>
-				class="titleTextRight" style="padding-left:80px" href="index.php?g=article_list" title="Lihat semua artikel">Lihat Semua Artikel >></a>										
+				<a class="titleTextRight" style="padding-left:80px" href="index.php?g=article_list" title="Lihat semua artikel">Lihat Semua Artikel >></a>										
 		</div>
 		
         
