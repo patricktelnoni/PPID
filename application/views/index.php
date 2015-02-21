@@ -37,9 +37,10 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 
 <body>
 	<div class="wrap">
-		<?php $this->load->view(header);?>
+		<?php $this->load->view('header');?>
 		<div class="menu floatLeft">
-		<?php include("./library/menu.php");?>
+		<?php $this->load->view('/library/menu.php');?>
+		
 		</div>                    
 		<div class="clearboth"></div>
 		<div class="content" id="contentDraw">
@@ -111,22 +112,7 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 							<table class="contentEdit" cellpadding="4" width='100%' height="100%" id="reportTable" style="padding:0 5px 0 5px;">
 								
 								<tr>
-								<?php
-								$y = 0;
-								$i=0;
-								//print_r($listBook);
-								$list = $activity->getNextActivities($data['activityId']);
-								foreach ($list as $row)
-								{
-									$i++;
-								if ($i<=2){
-									//$numComment = $comment->countComment($row['articleId'],$ARTICLE_TABLE);
-									if ($y==2){
-										echo "</tr><tr>	";
-										$y = 0;
-									}
-									$y++;
-									?>
+								
 									<td class="listHome">
 										<table border="0" height="100%" cellspacing="0">
 										<tr>
@@ -136,21 +122,17 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 										</tr>
 										<tr>
 											<td style="vertical-align:top" height="80%">
-											<?
-												if (!empty($row['imagePath'])){?>
+											
 														<img border="none" style="padding:5px 5px 1px 0" align="left" src="<?=$row['imagePath']?>" width="60" alt="" />
-												<?php
-												}
-												?>	
+												
 											<span class="textHome"> <?=substr($row['description'],0,200)."..."?></span><br>
 											</td>
 										</tr>
 										</table>
 									</td>
 									<?php
-									}
-									else break;
-								}
+									
+								
 								?>		
 							</tr>			
 							</table>
@@ -175,22 +157,7 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 						<table class="contentEdit" cellpadding="4" width='100%' id="reportTable" style="padding:0 5px 0 5px;">
 							
 							<tr>
-							<?php
-							$y = 0;
-							$list = $article->getRightArticle();
-							$i=0;
-							foreach ($list as $row)
-							{
-								$i++;
-								if ($i<=6)
-								{
-									$numComment = $comment->countComment($row['articleId'],$ARTICLE_TABLE);
-									if ($y==2){
-										echo "</tr><tr>	";
-										$y = 0;
-									}
-									$y++;
-									?>
+							
 									<td class="listHome">
 										<table border="0" height="100%" cellspacing="0">
 										<tr>
@@ -205,22 +172,15 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 										</tr>
 										<tr>
 											<td style="vertical-align:top" height="90%">
-											<?
-												if (!empty($row['imagePath'])){?>
+										
 														<img border="none" style="padding:5px 5px 1px 0" align="left" src="<?=$row['imagePath']?>" width="60" alt="" />
-												<?php
-												}
-												?>	
+												
 											<span class="textHome"> <?=substr($row['description'],0,150)."..."?></span><br>
 											</td>
 										</tr>
 										</table>
 									</td>
-									<?php
-								}
-								else break;
-							}
-							?>		
+									
 						</tr>	
 							
 						</table>							
