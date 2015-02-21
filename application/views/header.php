@@ -7,11 +7,7 @@
 				&nbsp;|&nbsp;&nbsp;<a href="index.php?g=links" class="topLink">Link</a>
 				&nbsp;|&nbsp;&nbsp;<a href="index.php?g=sitemap" class="topLink">Peta Situs</a>
 			</div>
-			<?php
-			if (!checkLogin())
-			{
-				if (!isset($_GET['e'])){
-			?>
+			
 				<div style="float:right;text-align:bottom;">
 					<form name="frmLogin" method="post">
 						<input type="hidden" value="<?=isset($_GET['g'])?$_GET['g']:''?>" name="goto"/>
@@ -31,27 +27,7 @@
 					</table>
 					</form>
 				</div>
-			<?php
-				}
-			}
-			else 
-			{
-				echo " <div style=\"float:right;text-align:bottom\">
-						<table width=\"100%\"; height=\"36\">
-							<tr>
-								<td style=\"text-align:bottom\">
-									Selamat datang <a style=\"color:blue\" href=\"index.php?g=user&id=".$_SESSION['ss_userId']."\">".$_SESSION['ss_name']."</a>
-									
-										<input type=\"button\" value=\"Log Out\" onClick=\"window.location='logout.php'\" name=\"logout\" class=\"button\">
-									
-								</td>
-							</tr>
-						</table>	
-						</div>			
-									";
-									
-			}
-			?>
+			
 			</div>
         	<div class="head">
 			  <div class="headcenter">
