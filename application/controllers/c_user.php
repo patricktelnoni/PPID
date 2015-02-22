@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+require_once ('abstraction.php');
 class c_user extends abstraction {
 
 	public function __construct() {
@@ -42,6 +42,3 @@ class c_user extends abstraction {
 		$this->load->view('index');
 	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
