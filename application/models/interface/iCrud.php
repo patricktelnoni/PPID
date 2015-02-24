@@ -1,12 +1,15 @@
 <?php
 interface iCrud{
+	//public $data;
 	
-	/* public function create(){}
-	public function update(){} */	
+	public function save();
 	
-	public function read(){}	
+	public function create($data);
 	
-	public function delete(){}
+	public function update($data);
 	
-	public function commit(){}
+	public function read();
+	
+	public function delete();
+	
 }

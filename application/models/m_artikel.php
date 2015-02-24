@@ -7,7 +7,7 @@ class m_artikel extends CI_Model implements iCrud{
 		parent::__construct();		
 	}
 
-	public function commit(){
+	public function save(){
 		$data = array(
 				'title' => 'My title' ,
 				'name' => 'My Name' ,
@@ -15,9 +15,17 @@ class m_artikel extends CI_Model implements iCrud{
 		);
 		
 		if($this->input->post('id') != "")
-			$this->db->insert('artikel', $data);
+			$this->create();//$this->db->insert('artikel', $data);
 		else 
-			$this->db->update('artikel', $data);
+			$this->update();//$this->db->update('artikel', $data);
+	}
+	
+	public function create(){
+		$this->db->insert('artikel', $data);
+	}
+	
+	public function update(){
+		$this->db->insert('artikel', $data);
 	}
 
 	public function read(){
