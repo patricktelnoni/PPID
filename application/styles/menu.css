@@ -1,0 +1,53 @@
+/* 
+© 2008 - Design, CSS Style by P&B Creations, pbcreations.sk
+© 2008 - Martin Plakinger (CEO)
+*/
+/* STYLE UNTUK MENU KANAN */
+
+ul#categories 
+	{
+	width:224px;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	font-size: 12px;
+	}
+ul#categories li 
+	{
+	display: block;
+	padding: 0px;
+	line-height: 30px;
+	height: 30px;
+	margin-top: 0px; 
+	margin-bottom: 0px;
+	background-image:url(../images/menukiri-0.gif);
+	background-repeat:repeat-y;
+	border-bottom: 1px #000 solid;
+	color:#FFF;
+	}
+*> ul#categories li 
+	{ 
+	margin-top: 0px; margin-bottom: 0px; 
+	}
+ul#categories li.selected 
+	{
+	text-decoration: none; 
+	}
+ul#categories li a 
+	{
+	display: block;
+	overflow: hidden;
+	padding: 0px 0px 0px 40px;
+	line-height: 30px;
+	text-decoration: none;
+	font-size: 12px;
+	color: #FFF;
+	}
+ul#categories li a:hover 
+	{ 
+	text-decoration: underline;
+	background-image:url(../images/menukiri-2.gif);
+	background-repeat:repeat-y;
+	color: RED;
+	}
