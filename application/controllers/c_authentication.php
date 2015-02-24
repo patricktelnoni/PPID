@@ -19,14 +19,27 @@ class c_authentication extends CI_Controller {
 	 */
 	public function __construct() {
 		parent:: __construct();
-		
 		$this->load->model('m_authentication');
+		
+		$this->load->library('pbkdf2');
+		
+		$config['iterations'] 	= 500;
+		$config['hash_length'] 	= 64;
+		$config['salt_length'] 	= 16;
+		
+		$this->pbkdf2->initialize($config);
+		
 	}
 	public function login()
-	{
-		$username	= $this->input->post('username');
-		$password	= $this->input->post('password');
-		$this->m_login->login($username, $password);
+	{		
+		$data = $this->m_authentication->read();
+			
+		$pbkdf2 = $this->pbkdf2->encrypt($this->input->post('txtPassword'), $data['password'], TRUE);
+				
+		if ($pbkdf2->hash === $data['password']) 		
+			echo "ciyeee login pake salt ciyee";			
+		else
+			echo "ciyeee ditolak ciyee";
 	}
 	public function logout()
 	{
@@ -40,6 +53,3 @@ class c_authentication extends CI_Controller {
 		$this->load->view('index', $data);
 	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
