@@ -17,7 +17,7 @@
 							<td align="left">Email: <input type="text" size="18" name="txtUsername" class="textbox" title="gunakan email sebagai username Anda"/></td>				
 							<td align="left">Password: <input type="password" size="18" name="txtPassword" class="textbox"/></td>
 							<td style="padding-top:10px" colspan="2" align="right"><input id="submit" type="submit"  value="Login" name="btnLogin" class="button"/>
-							&nbsp;<input type="button" value="Sign Up" onClick="window.location='index.php?g=user_manage&id=0'"name="btnSignup" class="button"/>
+							&nbsp;<input type="button" value="Sign Up" onClick="window.location='./c_registration'"name="btnSignup" class="button"/>
 							</td>
 							<td colspan="2" align="right">
 								<a style="color:blue" href="index.php?g=send_password" >Lupa Password?</a>

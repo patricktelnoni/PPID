@@ -42,49 +42,19 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 		<div class="menu floatLeft">
 		<?php $this->load->view('/library/menu.php');?>
 		
-		</div>                    
+		</div>           
 		<div class="clearboth"></div>
 		<div class="content" id="contentDraw">
 		<table align="left" cellpadding="0" cellspacing="0">
 		<tr>
-			<td class="contentCenter-0"  colspan="2" style="padding-bottom:10px">
+		<td class="contentCenter-0"  colspan="2" style="padding-bottom:10px">
 			<div id="cse" style="width:100%;height"></div> 
-			<div class="contentMain">		
-				<div class="slideshow">
-					
-					<div>
-						<table class="contentToday">
-							<tr>
-								<td style="padding:10px 10px 0 10px"><img src="" width="370" height="235" /></td>
-							</tr>
-							<tr>
-								<td style="padding-left:10px">
-									<b><u>></u></b><br>
-									<span class="divTitleCenter1x">
-										<a class="titleCenter" href="index.php?g=>"><u></u></a>
-									</span>	
-								</td>
-							</tr>
-						</table>
-					</div>
-					
-				 </div>
-				<div class="mainBatas"></div>
-				<div class="listTopik">
-				<span style="color:#a8480e"><B><u>HEADLINE</u></B></span><br>
-					
-					<div style="padding-top:6px"><a class="hrefTopik"><span style="font-weight:bold" title=""></span></a><br>
-					<span class="textRight"></span>
-					</div>
-					<!--<br>
-					<a class="hrefTopik" href="index.php?g="><u>more</u>
-					</a>-->
-					
-				</div>
-			</div>
-             <div class="clearboth"></div>    
+			         
+			<?php $this->load->view($body);?>
+			<div class="clearboth"></div>   
 			</td>
-			<?php $this->load->view('menukanan');?>  
+			<?php $this->load->view('menukanan');?>
+			  
 		</tr>
          <tr>
 				<!-- ISI BAGIAN KIRI -->
