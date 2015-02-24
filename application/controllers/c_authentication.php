@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class c_login extends CI_Controller {
+class c_authentication extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,7 +20,7 @@ class c_login extends CI_Controller {
 	public function __construct() {
 		parent:: __construct();
 		
-		$this->load->model('m_login');
+		$this->load->model('m_authentication');
 	}
 	public function login()
 	{
@@ -36,7 +36,8 @@ class c_login extends CI_Controller {
 	public function index()
 	{
 		//$this->output->set_header('Content-type: text/javascript');
-		$this->load->view('index');
+		$data['body'] = 'body';
+		$this->load->view('index', $data);
 	}
 }
 

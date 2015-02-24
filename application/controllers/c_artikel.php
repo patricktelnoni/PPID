@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once '/abstraction/private_abstraction.php';
 
-class c_artikel extends abstraction {
+class c_artikel extends private_abstraction {
 	
 	public function __construct() {
 		parent:: __construct();
