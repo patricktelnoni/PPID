@@ -1,22 +1,40 @@
-<?php echo $this->session->flashdata('message')?>
-		
+<?php echo $this->session->flashdata('message');?>
+		<?php //print_r($content);?>
 			
 			<div class="contentMain">		
 				<div class="slideshow">
 					
 					<div>
 						<table class="contentToday">
+							
+							<?php
+							$i=0; 
+							foreach($content as $key )
+							{
+								//print_r($key);
+								//echo $key;
+								//echo $content[$key][$val]['judul'];
+							
+								?>
 							<tr>
-								<td style="padding:10px 10px 0 10px"><img src="" width="370" height="235" /></td>
+								<td style="padding:10px 10px 0 10px">
+									<span class="divTitleCenter1x">
+										<a class="titleCenter" href="index.php">
+											<?=$key['isi']?>
+										</a>
+									</span>
+								</td>
 							</tr>
 							<tr>
 								<td style="padding-left:10px">
+									
 									<br>
-									<span class="divTitleCenter1x">
-										<a class="titleCenter" href="index.php"></a>
-									</span>	
+									
+										<?=$key['judul']?>
+									
 								</td>
 							</tr>
+							<?php }?>
 						</table>
 					</div>
 					
