@@ -1,5 +1,5 @@
 <?php
-interface iCrud{
+interface i_crud{
 	//public $data;
 	
 	public function create($data);

@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" >
+<meta charset="UTF-8">
 <head>
 <title>Web PPID Bontang</title>
 <link rel="shortcut icon" href="./favicon.ico"/>
@@ -16,9 +17,13 @@
 .style1 {font-size: 18px}
 -->
 </style>
-<script type="text/javascript" src="<?=base_url()?>library/jquery/jquery.js"></script>
-<script type="text/javascript" src="<?=base_url()?>library/jquery/jquery.cycle.min.js"></script>
-<script type="text/javascript" src="<?=base_url()?>library/jquery/jquery.cycle.all.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>angular/angular.min.js"></script>
+<link rel='stylesheet' href='<?=base_url()?>angular/textAngular/src/textAngular.css'>
+<script src='<?=base_url()?>angular/textAngular/dist/textAngular-rangy.min.js'></script>
+<script src='<?=base_url()?>angular/textAngular/dist/textAngular-sanitize.min.js'></script>
+<script src='<?=base_url()?>angular/textAngular/dist/textAngular.min.js'></script>
+
+
 <link rel="stylesheet" href="<?=base_url()?>styles/slideshowtheme.css" type="text/css" media="screen" charset="utf-8" />
 <script type="text/javascript">
 $(document).ready(function() {
@@ -31,14 +36,18 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 });
 });
 </script>
-<script type="text/javascript" src="./library/functions.js"></script>
+
+<!-- <script type="text/javascript" src="./library/functions.js"></script>
 <script type="text/javascript" language="javascript" src="./library/stuHover.js"></script>
-<script type="text/javascript" src="./library/scrolltext.js"></script>
+<script type="text/javascript" src="./library/scrolltext.js"></script> -->
 </head>
 
 <body>
+<!-- <p>Nothing here {{'yet' + '!'}}</p> <br>
+		 <p>1 + 2 = {{ 1 + 2 }}</p> -->	 
+		
 	<div class="wrap">
-		<?php $this->load->view('header');?>
+		<?php $header!=''?$this->load->view($header):'';?>
 		<div class="menu floatLeft">
 		<?php $this->load->view('/library/menu.php');?>
 		
@@ -47,13 +56,21 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 		<div class="content" id="contentDraw">
 		<table align="left" cellpadding="0" cellspacing="0">
 		<tr>
+			
 		<td class="contentCenter-0"  colspan="2" style="padding-bottom:10px">
 			<div id="cse" style="width:100%;height"></div> 
-			         
-			<?php $this->load->view($body);?>
+			
+			<?php		 
+		if($this->session->userdata('logged_in'))
+		{
+			echo anchor('c_artikel/createarticle', 'Buat tulisan', 'title="Buat tulisan baru"');
+			}
+			$body!=''?$this->load->view($body):'';
+			//$this->load->view($body);
+			?>
 			<div class="clearboth"></div>   
 			</td>
-			<?php $this->load->view('menukanan');?>
+			<?php $right !=''?$this->load->view($right):'';//$this->load->view('menukanan');?>
 			  
 		</tr>
          <tr>
@@ -66,10 +83,11 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 					
 			</div>
 			</div>-->
-			<?php include("view/menukiri.php"); ?>                          
+			<?php $left != ''?$this->load->view($left):'';?>                          
 				<div class="clearboth">
 				</div>
 		</th>
+		 
 			
 				<!-- ISI BAGIAN TENGAH -->                    
 				<td valign="top" class="contentCenter-0">
@@ -169,25 +187,17 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 							}
 							?>	
 						</div>
-					</div>	
-					<!--<object width="400" height="300">
-						<param name="movie" value="http://www.youtube.com/v/TRK2Y1cZaME&hl=en&fs=1&"></param>
-						<param name="allowFullScreen" value="true"></param>
-						<param name="allowscriptaccess" value="always"></param>
-						<embed src="http://www.4shared.com/embed/151982126/4ae8ce81" width="400" height="20" allowfullscreen="true" allowscriptaccess="always" flashvars="autostart=false"></embed>
-					</object>-->
-					<!--<embed src="http://www.youtube.com/v/s392HyzQ79M&hl=en&fs=1&&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="400" height="300"></embed>-->
-
-                </td>
-				<!-- ISI BAGIAN KANAN -->
+					                </td>
+				
 				                                          
             </tr>
         </table>
 	    </div>
-<?php		
-		$this->load->view('footer');
+<?php	
+	$footer!=''?$this->load->view($footer):'';	
+		//$this->load->view('footer');
 ?>
 	</div>                
-<?php include("./view/google_analytic.php");?>
+
 </body>
 </html>

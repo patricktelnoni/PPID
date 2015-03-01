@@ -15,20 +15,36 @@ class private_abstraction extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
 	
-	public function loginCheck()
+	private function loginCheck()
 	{
 		if (!$this->session->userdata ('logged_in')) {
 			redirect ("c_authentication");
 		}
 		else{
-			/*
-			 * Rediret to some action
-			 * */
+			
 		}
 	}
 	
-	public function loadPage()
+	public function loadPage($page=array(), &$data=null)
 	{
+		//print_r($data);
+		//$load = array();
+		foreach ($page as $val => $key)
+		{
+			
+			$load[$val] = $key;
+		}
+		$mainpage = $page['page'];
+
+		if($data !== null)
+		{
+			foreach ($data as $val => $key)
+			{
+					
+				$load[$val] = $key;
+			}	
+		}
 		
+		$this->load->view($mainpage, $load);
 	}
 }

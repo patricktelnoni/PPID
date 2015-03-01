@@ -7,16 +7,25 @@ class public_abstraction extends CI_Controller {
 		parent::__construct();
 		//$this->loginCheck();
 	}
-	
-	/*  public function index()
+		
+	public function loadPage($page=array(), &$data=null)
 	{
-		 $data['body'] = 'registration';
-		$this->load->view('welcome_message'); 
-	}  */
-	
-	public function loadPage($body)
-	{
-		$data['body'] = $body;
-		$this->load->view('index', $data);
+		//print_r($data);
+		foreach ($page as $val => $key)
+		{			
+			$load[$val] = $key;
+		}
+		$mainpage = $page['page'];
+		
+		if($data !== null)
+		{
+			foreach ($data as $val => $key)
+			{
+					
+				$load[$val] = $key;
+			}
+		}
+		//print_r($load);
+		$this->load->view($mainpage, $load);
 	}
 }

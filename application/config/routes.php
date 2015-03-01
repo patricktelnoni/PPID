@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "abstraction";
+$route['default_controller'] = "abstraction/private_abstraction";
 $route['404_override'] 		 = '';
 
 

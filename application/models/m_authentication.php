@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once '/interface/iCrud.php';
+require_once '/interface/i_crud.php';
 
-class m_authentication extends CI_Model implements iCrud{
+class m_authentication extends CI_Model implements i_crud{
 
 	function __construct()
     {

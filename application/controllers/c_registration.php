@@ -20,8 +20,6 @@ class c_registration extends public_abstraction {
 	{
 		$pbkdf2 = $this->pbkdf2->encrypt($this->input->post('password'), TRUE);
 		
-		//print_r($pbkdf2);
-		//$pbkdf2['salt'],$pbkdf2['password']
 		$data = array(
 				'email'		=> $this->input->post('email'),
 				'password'	=> $pbkdf2->hash,
@@ -30,23 +28,26 @@ class c_registration extends public_abstraction {
 				'kota'		=> $this->input->post('city'),
 				'propinsi'	=> $this->input->post('province'),
 				'kodepos'	=> $this->input->post('postalcode'),
-				'telepon'	=> $this->input->post('phone')
-				//'salt'		=> $pbkdf2->salt
+				'telepon'	=> $this->input->post('phone')				
 		);
-		if($this->input->post('id') == '')
-			//$this->create($data);
+		
+		if($this->input->post('id') == '')		
 			$this->m_authentication->create($data);
 		else
-			$this->m_authentication->update($data);
-			//$this->update($data);
+			$this->m_authentication->update($data);			
 		
 	}
 	
 	public function index()
 	{
-		//$this->output->set_header('Content-type: text/javascript');
-		parent:: loadPage('registration');
-		/* $data['body'] = 'registration';
-		$this->load->view('index', $data); */
+		$page	= array(
+				$body 	=> 'registration',
+				$header => 'header',
+				$page 	=> 'index',
+				$right 	= 'menukanan'
+		);
+						
+		
+		parent::loadPage($page);		
 	}
 }

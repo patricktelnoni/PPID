@@ -1,22 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once '/abstraction/public_abstraction.php';
+class c_authentication extends public_abstraction {
 
-class c_authentication extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function __construct() {
 		parent:: __construct();
 		$this->load->model('m_authentication');
@@ -33,13 +18,33 @@ class c_authentication extends CI_Controller {
 	public function login()
 	{		
 		$data = $this->m_authentication->read();
+		//print_r($data);
+		if($data){
+			$pbkdf2 = $this->pbkdf2->encrypt($this->input->post('txtPassword'), $data['password'], TRUE);
 			
-		$pbkdf2 = $this->pbkdf2->encrypt($this->input->post('txtPassword'), $data['password'], TRUE);
+			if ($pbkdf2->hash === $data['password'])
+			{
+				$newdata = array(
+						'username'  => $data['email'],						
+						'logged_in' => TRUE
+				);
 				
-		if ($pbkdf2->hash === $data['password']) 		
-			echo "ciyeee login pake salt ciyee";			
-		else
-			echo "ciyeee ditolak ciyee";
+				$this->session->set_userdata($newdata);
+				redirect('c_artikel');//$this->session->set_flashdata('message', 'ciyeee login pake salt ciyee');
+			}
+			else
+			{
+				$this->session->set_flashdata('message', 'ciyeee ditolak ciyee');
+				redirect('c_authentication ');
+			}
+		}
+		else{
+			$this->session->set_flashdata('message', 'Ga terdaftar dodoll');
+			redirect('c_authentication ');
+		}
+		 
+		
+		//redirect('c_authentication ');
 	}
 	public function logout()
 	{
@@ -49,7 +54,15 @@ class c_authentication extends CI_Controller {
 	public function index()
 	{
 		//$this->output->set_header('Content-type: text/javascript');
-		$data['body'] = 'body';
-		$this->load->view('index', $data);
+		$page['header']	= 'header';	
+		$page['left']	= '';
+		$page['right']	= 'menukanan';
+		$page['footer']	= 'footer;';
+		$page['body']	= 'body';
+		$page['page']	= 'index';				
+		
+		//$this->load->view($page, $data);
+		parent::loadPage($page, $data);
+		
 	}
 }

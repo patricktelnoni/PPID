@@ -6,43 +6,54 @@ class c_artikel extends private_abstraction {
 	public function __construct() {
 		parent:: __construct();
 		
-		$this->load->model('m_user');
-	}
-	public function login()
-	{
-		$username	= $this->input->post('username');
-		$password	= $this->input->post('password');
-		$this->m_login->login($username, $password);
-	}
-	public function listuser()
-	{
-		echo $this->m_user->listuser();
-	}
-	public function adduser()
-	{
-		
-		$username 	= $this->input->post('username');
-		$password 	= $this->input->post('password');
-		$this->m_user->adduser($username, $password);
-	}
-	public function updateuser()
-	{
-		$userid 	= $this->input->post('userid');
-		$username 	= $this->input->post('username');
-		$password 	= $this->input->post('password');
-		$this->m_user->updateuser($userid, $username, $password);
-	}
-	public function deleteuser()
-	{
-		$userid 	= $this->input->post('userid');
-		$this->m_user->deleteuser($userid);
+		$this->load->model('m_artikel');
 	}
 	public function index()
+	{		
+		$page['header']	= 'header';	
+		$page['left']	= '';
+		$page['right']	= 'menukanan';
+		$page['footer']	= 'footer;';
+		$page['body']	= 'artikel';
+		$page['page']	= 'index';
+				
+				
+				
+		
+		parent::loadPage($page);
+	}
+	function createarticle()
 	{
-		//$this->output->set_header('Content-type: text/javascript');
-		$this->load->view('index');
+		$page['header']	= 'header';
+		$page['left']	= '';
+		$page['right']	= 'menukanan';
+		$page['footer']	= 'footer;';
+		$page['body']	= 'createarticle';
+		$page['page']	= 'index';
+		/* $page	= array(
+				'body' 	=> 'createarticle',
+				'header'=> 'header',
+				'page' 	=>'index',
+				'left'	=> '',
+				'right' => 'menukanan'
+		); */
+		parent::loadPage($page);
+		
+	}
+	
+	function save()
+	{		
+		//print_r($_POST);
+		$data = array(
+				'penulis'	=> $this->session->userdata('username'),				
+				'isi'		=> $this->input->post('isi'),
+				'judul'		=> $this->input->post('judul')
+		);
+		if($this->input->post('id') == '')
+			$this->m_artikel->create($data);
+		else
+			$this->m_artikel->update($data);
+		
+		redirect('c_artikel');
 	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

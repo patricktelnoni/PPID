@@ -1,4 +1,4 @@
-
+<?php echo $this->session->flashdata('message')?>
 		
 			
 			<div class="contentMain">		

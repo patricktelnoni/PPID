@@ -1,30 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class m_artikel extends CI_Model implements iCrud{
+require_once '/interface/i_crud.php';
+class m_artikel extends CI_Model implements i_crud{
 
 	public function __construct()
 	{
 		parent::__construct();		
 	}
-
-	public function save(){
-		$data = array(
-				'title' => 'My title' ,
-				'name' => 'My Name' ,
-				'date' => 'My date'
-		);
-		
-		if($this->input->post('id') != "")
-			$this->create();//$this->db->insert('artikel', $data);
-		else 
-			$this->update();//$this->db->update('artikel', $data);
-	}
 	
-	public function create(){
+	public function create($data){
 		$this->db->insert('artikel', $data);
 	}
 	
-	public function update(){
+	public function update($data){
 		$this->db->insert('artikel', $data);
 	}
 
