@@ -10,6 +10,8 @@ class c_artikel extends private_abstraction {
 	}
 	public function index()
 	{		
+		$data = array();
+		
 		$page['header']	= 'header';	
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
@@ -17,14 +19,22 @@ class c_artikel extends private_abstraction {
 		$page['body']	= 'artikel';
 		$page['page']	= 'index';
 				
-				
-				
+		$artikel = $this->m_artikel->read();	
 		
-		parent::loadPage($page);
+		$i=0;		
+	 	foreach ($artikel->result_array() as $row)
+		{			
+			$data['content'][$i]['judul'] = $row['judul'];
+			$data['content'][$i]['isi'] = $row['isi'];
+			$i++;
+		} 
+		//print_r($data);
+		
+		parent::loadPage(array_merge($page, $data));
 	}
 	function createarticle()
 	{
-		$page['header']	= 'header';
+		$page['header']	= 'header'; 
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
 		$page['footer']	= 'footer;';
