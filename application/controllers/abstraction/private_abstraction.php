@@ -25,25 +25,14 @@ class private_abstraction extends CI_Controller {
 		}
 	}
 	
-	public function loadPage($page=array(), &$data=null)
-	{
-		//print_r($data);
-		//$load = array();
+	public function loadPage($page=array())
+	{		
 		foreach ($page as $val => $key)
 		{
 			
 			$load[$val] = $key;
-		}
-		$mainpage = $page['page'];
-
-		if($data !== null)
-		{
-			foreach ($data as $val => $key)
-			{
-					
-				$load[$val] = $key;
-			}	
-		}
+		}			
+		$mainpage = $page['page'];		
 		
 		$this->load->view($mainpage, $load);
 	}
