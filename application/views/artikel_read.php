@@ -8,9 +8,10 @@
 						<table class="contentToday">
 							
 							<?php
-							$i=0; 
+							$row = $content->row();
+							/* $i=0; 
 							foreach($content as $key )
-							{
+							{ */
 								//print_r($key);
 								//echo $key;
 								//echo $content[$key][$val]['judul'];
@@ -18,10 +19,11 @@
 								?>
 							<tr>
 								<td style="padding:10px 10px 0 10px">
+								<?=$row->judul?>
 									<span class="divTitleCenter1x">
-										<a class="titleCenter" href="./c_artikel/read/<?=$key['artikelid']?>">
-											<?=$key['isi']?>
-										</a>
+										
+											<?=$row->isi?>
+										
 									</span>
 								</td>
 							</tr>
@@ -30,11 +32,11 @@
 									
 									<br>
 									
-										<?=$key['judul']?>
+										<?//=$key['judul']?>
 									
 								</td>
 							</tr>
-							<?php }?>
+							<?php //}?>
 						</table>
 					</div>
 					
