@@ -11,7 +11,7 @@
 					
 	<div >
 					
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" ng-controller='LoopController'>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" ng-controller='LoopController' style="width: 600px; ">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -78,7 +78,7 @@
 			 	});
  			</script>
 				 </div>
-				<div class="mainBatas"></div>
+				<!-- <div class="mainBatas"></div>
 				<div class="listTopik">
 				<span style="color:#a8480e"><B><u>HEADLINE</u></B></span><br>
 					
@@ -89,7 +89,7 @@
 					<a class="hrefTopik" href="index.php?g="><u>more</u>
 					</a>-->
 					
-				</div>
+				<!-- </div>-->
 			</div>
               
 			
