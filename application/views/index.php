@@ -8,6 +8,7 @@
 <link href="<?=base_url()?>styles/style.css" rel="stylesheet" type="text/css" />
 <link href="<?=base_url()?>styles/menu.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>styles/dropdown/menuatas.css" />
+<link href="<?=base_url()?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
 <!--
 .style1 {font-size: 18px}
@@ -17,16 +18,13 @@
 .style1 {font-size: 18px}
 -->
 </style>
-<script type="text/javascript" src="<?=base_url()?>angular/angular.min.js"></script>
-<link rel='stylesheet' href='<?=base_url()?>angular/textAngular/src/textAngular.css'>
-<script src='<?=base_url()?>angular/textAngular/dist/textAngular-rangy.min.js'></script>
-<script src='<?=base_url()?>angular/textAngular/dist/textAngular-sanitize.min.js'></script>
-<script src='<?=base_url()?>angular/textAngular/dist/textAngular.min.js'></script>
+<script type="text/javascript" src="<?=base_url()?>angular/angular.js"></script>
+
 
 
 <link rel="stylesheet" href="<?=base_url()?>styles/slideshowtheme.css" type="text/css" media="screen" charset="utf-8" />
 <script type="text/javascript">
-$(document).ready(function() {
+/* $.(document).ready(function() {
 $('.slideshow').before('<div id="navg">').cycle({
 fx:'fade',
 speed: '1000',
@@ -34,7 +32,7 @@ timeout: 4000,
 pager: '#navg',
 pagerClick: function(){$('.slideshow').cycle('pause');}
 });
-});
+}); */
 </script>
 
 <!-- <script type="text/javascript" src="./library/functions.js"></script>
@@ -57,7 +55,7 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 		<table align="left" cellpadding="0" cellspacing="0">
 		<tr>
 			
-		<td class="contentCenter-0"  colspan="2" style="padding-bottom:10px">
+		<td class="contentCenter-0"  colspan="2">
 			<div id="cse" style="width:100%;height"></div> 
 			
 			<?php		 
