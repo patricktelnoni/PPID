@@ -1,42 +1,86 @@
-<!-- BAGIAN HEADER -->
-    	<div class="wrap1">
-		   <div class="headMain">
-		    <div class="headTop">
-				
-				<div style="float:right;text-align:bottom;">
-				<?php if(!$this->session->userdata('logged_in')){?>
-					<form name="frmLogin" method="post" action="./c_authentication/login">
-						<input type="hidden" value="<?=isset($_GET['g'])?$_GET['g']:''?>" name="goto"/>
-						<input type="hidden" value="<?=isset($_GET['id'])?$_GET['id']:''?>" name="gotoId"/>
-					<table style="padding-top:0px;">
-						<tr style="font-size:12px">
-							<td align="left">Email: <input type="text" size="18" name="email" class="textbox" title="gunakan email sebagai username Anda"/></td>				
-							<td align="left">Password: <input type="password" size="18" name="txtPassword" class="textbox"/></td>
-							<td style="padding-top:10px" colspan="2" align="right"><input id="submit" type="submit"  value="Login" name="btnLogin" class="button"/>
-							&nbsp;<input type="button" value="Sign Up" onClick="window.location='./c_registration'"name="btnSignup" class="button"/>
-							</td>
-							<td colspan="2" align="right">
-								<a style="color:blue" href="index.php?g=send_password" >Lupa Password?</a>
-							</td>
-						</tr>
-						
-					</table>
-					</form>
-					<?php }?>
-				</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">PPID Bontang</a>
+            </div>          
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+              </ul>
+        <?php if(!$this->session->userdata('logged_in')){?>
+        <script type="text/javascript">
+		/*var app = angular.module('nav', []);
+		app.controller('link', ['$scope', '$http',
+		 function($scope, $http){
 			
-			</div>
-        	<div class="head">
-			  <div class="headcenter">
-                	<div class="logo"></div>
-					<div style="float:right">
-					
-					</div>
-           	  </div>
-          	</div>
-			</div>
-  		</div>
-        
+			$scope.redirect = function(){
+				  window.location = "c_registration";
+			}
+			$scope.login = function(){
+				 // window.location = "c_authentication/login";
+				//console.log('Login');
+				$http.post('<?=base_url()?>index.php/c_authentication/login', {'email': $scope.email, 'password': $scope.password})
+				.success(function(data) {
+				    console.log(data);
+
+				    if (!data.success) {
+				      // if not successful, bind errors to error variables
+				      $scope.errorName = data.errors.name;
+				      $scope.errorSuperhero = data.errors.superheroAlias;
+				    } else {
+				      // if successful, bind success message to message
+				      $scope.message = data.message;
+				    }
+				  })
+				.error();          
+	              
+				}
+			}]);*/
+
+		
+				
+        </script>
+          <form class="navbar-form navbar-right" action="./c_authentication/login" method="POST">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+            <button class="btn btn-success" ng-click="redirect()">Sign Up</button>
+          </form>
+          
+          <?php }?>
+          
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    
+    	        
         <div class="clearboth">
         </div>
  
