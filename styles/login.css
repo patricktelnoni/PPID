@@ -1,0 +1,196 @@
+body {
+        margin: 0;
+        padding: 0;
+        font-family: "Trebuchet MS", Helvetica, Arial, Verdana, sans-serif;
+        font-size: 10px;
+        color: #454545;
+        background: #fff url(../images/bg.png) repeat-x;
+}
+
+	
+div#content p{
+	line-height:1.4
+	}
+	
+
+div#container{
+	width:1000px;
+    margin:0 auto;
+    text-align:center;
+}
+div#wrapper{
+	float:left;
+	width:910px;
+    text-align:left;
+	}
+/*
+// RIGHT
+*/		
+div#right{
+	float:left;
+	width:45px;
+
+	background: url(../images/bg_r.png) no-repeat left top;
+	}
+/*
+// LEFT
+*/		
+div#left{
+	float:left;
+	width:45px;
+
+	background: url(../images/bg_l.png) no-repeat right top;
+	}	
+/*
+// MAIN CONTENT
+*/	
+div#content{
+	margin: 0 0;
+	background: url(../images/bg_c.png) repeat-x left top;
+	}
+
+/*
+// HEAD MENU
+*/
+#headmenu{
+	height: 48px;
+	font-size: 10.5px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#headbanner{
+	height: 140px;
+	background: url(../images/header.jpg) repeat-x left top;
+}
+
+#headbanner h1{
+	margin: 0;
+	padding: 80px 0 0 140px;
+	font-size: 24px;
+	color: #fff;
+	font-weight: lighter;
+}
+
+
+
+#boxed {
+	padding-top: 10px;
+	font-size: 11px;
+	padding-bottom: 30px;
+}
+
+#boxedleft{
+	margin-right: 340px;
+	background: red;
+}
+
+#boxedright{
+	float: right;
+	width: 320px;
+}
+
+
+/*
+// FORMS RELATED
+*/
+fieldset { 
+position: relative;  
+float: left;  
+clear: both;  
+width: 100%;  
+margin: 0 0 1em 0;  
+padding: 0 0 1em 0;  
+border-style: none;  
+border-top: 1px solid #BFBAB0;  
+background: #fff url(../images/bg_grad1.png) repeat-x bottom left; 
+}
+
+legend {  
+padding: 5px 0;  
+color: #000;  
+font-weight: bold;
+}
+
+legend span {  
+position: absolute;  
+left: 0.74em;  
+top: 0;  
+margin-top: 0.5em;  
+font-size: 135%;
+}
+
+fieldset ol {  
+padding: 1em 1em 0 1em;  
+list-style: none;
+}
+
+fieldset li {  
+float: left;  
+clear: left;  
+width: 100%;  
+padding-bottom: 1em;
+}
+
+fieldset.submit {  
+float: none;  
+width: auto;  
+border-style: none;  
+padding-left: 15em;  
+background-color: transparent;  
+background-image: none;
+}
+
+label {  
+float: left;  
+width: 12em;  
+margin-right: 1em;
+}
+
+label em {  
+display: block;  
+color: #060;  
+font-size: 85%;  
+font-style: normal;  
+text-transform: uppercase;
+}
+
+input{
+	
+}
+
+textarea{
+	
+}
+
+select{
+	
+}
+
+fieldset.submit {  
+float: none;  
+width: auto;  
+border: 0 none #FFF;  
+padding-left: 12em;
+}
+
+
+/*
+// FOOTER
+*/		
+div#footer{
+	clear:left;
+	width:1000px;
+    text-align:center;
+	height: 120px;
+	text-align: center;
+	background: url(../images/bg_footer.png) no-repeat center;
+	}
+div#footer{
+	color: orange;
+	}
+	
+div#footer p{
+	margin:0;
+	padding:90px 10px 0 10px;
+	}
