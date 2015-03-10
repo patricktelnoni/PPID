@@ -15,7 +15,7 @@ class c_artikel extends private_abstraction {
 		$page['header']	= 'header';	
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer;';
+		$page['footer']	= 'footer';
 		$page['body']	= 'artikel';
 		$page['page']	= 'index';
 				
@@ -27,8 +27,10 @@ class c_artikel extends private_abstraction {
 			$data['content'][$i]['artikelid']	= $row['artikelid'];
 			$data['content'][$i]['judul'] 		= $row['judul'];
 			$data['content'][$i]['isi'] 		= $row['isi'];
+			
 			$i++;
 		} 
+		$data['total']		= $artikel->num_rows();
 		//print_r($data);
 		
 		parent::loadPage(array_merge($page, $data));
@@ -39,7 +41,7 @@ class c_artikel extends private_abstraction {
 		$page['header']	= 'header'; 
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer;';
+		$page['footer']	= 'footer';
 		$page['body']	= 'createarticle';
 		$page['page']	= 'index';
 		
@@ -68,7 +70,7 @@ class c_artikel extends private_abstraction {
 		$page['header']	= 'header';
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer;';
+		$page['footer']	= 'footer';
 		$page['body']	= 'artikel_read';
 		$page['page']	= 'index';
 		
