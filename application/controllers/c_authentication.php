@@ -5,6 +5,7 @@ class c_authentication extends public_abstraction {
 	public function __construct() {
 		parent:: __construct();
 		$this->load->model('m_authentication');
+		$this->load->model('m_artikel');
 		
 		$this->load->library('pbkdf2');
 		
@@ -20,7 +21,7 @@ class c_authentication extends public_abstraction {
 		$data = $this->m_authentication->read();
 		//print_r($data);
 		if($data){
-			$pbkdf2 = $this->pbkdf2->encrypt($this->input->post('txtPassword'), $data['password'], TRUE);
+			$pbkdf2 = $this->pbkdf2->encrypt($this->input->post('password'), $data['password'], TRUE);
 			
 			if ($pbkdf2->hash === $data['password'])
 			{
@@ -30,7 +31,8 @@ class c_authentication extends public_abstraction {
 				);
 				
 				$this->session->set_userdata($newdata);
-				redirect('c_artikel');//$this->session->set_flashdata('message', 'ciyeee login pake salt ciyee');
+				redirect('c_artikel');
+				//$this->session->set_flashdata('message', 'ciyeee login pake salt ciyee');
 			}
 			else
 			{
@@ -53,16 +55,32 @@ class c_authentication extends public_abstraction {
 	}
 	public function index()
 	{
+		$data = array();
 		//$this->output->set_header('Content-type: text/javascript');
 		$page['header']	= 'header';	
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer;';
-		$page['body']	= 'body';
+		$page['footer']	= 'footer';
+		$page['body']	= 'artikel';
 		$page['page']	= 'index';				
 		
-		//$this->load->view($page, $data);
-		parent::loadPage($page, $data);
+		$artikel = $this->m_artikel->read();
+
+		//echo "artikel";
+		//print_r($artikel);
+		$i=0;		
+	 	foreach ($artikel->result_array() as $row)
+		{	
+			$data['content'][$i]['artikelid']	= $row['artikelid'];
+			$data['content'][$i]['judul'] 		= $row['judul'];
+			$data['content'][$i]['isi'] 		= $row['isi'];
+			
+			$i++;
+		} 
+		$data['total']		= $artikel->num_rows();
+		//print_r($data);
+		
+		parent::loadPage(array_merge($page, $data));
 		
 	}
 }
