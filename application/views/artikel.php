@@ -1,6 +1,7 @@
 <?php echo $this->session->flashdata('message');?>
 		<?php //print_r($content);?>
 <link href="<?=base_url()?>bootstrap/carousel.css" rel="stylesheet">	
+<link href="<?=base_url()?>styles/sidenav.css" rel="stylesheet">
 			
 			
 			<div class="contentMain" ng-app="artikel">		
