@@ -14,10 +14,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li class="dropdown">
+                <li class="active"><a href="#">Beranda</a></li>
+                <li><a href="<?=base_url()?>index.php/c_informasi">Daftar Informasi</a></li>
+                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_berkala">Informasi berkala</a></li>
+                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_rutin">Informasi Setiap Saat</a></li>
+                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_mendadak">Informasi Serta Merta</a></li>
+                <!-- <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Action</a></li>
@@ -28,7 +30,7 @@
                     <li><a href="#">Separated link</a></li>
                     <li><a href="#">One more separated link</a></li>
                   </ul>
-                </li>
+                </li> -->
               </ul>
         <?php if(!$this->session->userdata('logged_in')){?>
         <script type="text/javascript">
@@ -74,7 +76,16 @@
             <button class="btn btn-success" ng-click="redirect()">Sign Up</button>
           </form>
           
-          <?php }?>
+          <?php 
+			}
+          else {?>
+          <div class="navbar-form navbar-right">
+          	<button class="btn btn-success" onclick="window.location='./c_artikel/createarticle'">Buat Artikel</button>
+          	<button class="btn btn-success" onclick="window.location='./c_authentication/logout'">Log Out</button>
+          </div>
+           
+          <?php
+			}?>
           
         </div><!--/.navbar-collapse -->
       </div>

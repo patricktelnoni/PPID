@@ -2,12 +2,12 @@
         </div>
         
 <!-- BAGIAN FOOTER -->        
-        <div class="footer">
+        <!-- <div class="footer">
         	<div>
             	<div style=" float:left; text-align:center; padding:5px 0 0 230px">
                 <span class="titleFooter" style="font-size:16px">Perkantas Jawa Timur</span><br/>
                 <span class="titleFooter">Jalan Tenggilis Mejoyo KA 10-12 Surabaya 60292</span><br/>
-                <span class="titleFooter">Telp. (031) 8435582, 8413047 Fax. 8418639, e-mail: <a style="color:#fff" href="mailto:pktas.jatim@gmail.com" >pktas.jatim@gmail.com</a></span><br/>
+                <span class="titleFooter">Telp. (031) 8435582, 8413047 Fax. 8418639, e-mail: <a style="color:#fff" href="mailto:pktas.jatim@gmail.com" >PPID Kota Bontang</a></span><br/>
                 <span class="titleFooter">No. Rek. 8220176445 BCA Cab. Rungkut a/n Yayasan Perkantas</span><br/>
 				<span class="titleFooter"></span><br/>
                 </div>
@@ -18,4 +18,4 @@
                 </div>                        
         
             </div>
-        </div>
+        </div>  -->

@@ -5,10 +5,11 @@
 <title>Web PPID Bontang</title>
 <link rel="shortcut icon" href="./favicon.ico"/>
 <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
-<link href="<?=base_url()?>styles/style.css" rel="stylesheet" type="text/css" />
+<link href="<?//=base_url()?>styles/style.css" rel="stylesheet" type="text/css" />
 <link href="<?=base_url()?>styles/menu.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>styles/dropdown/menuatas.css" />
 <link href="<?=base_url()?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <style type="text/css">
 <!--
 .style1 {font-size: 18px}
@@ -55,8 +56,8 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 		<table align="left" cellpadding="0" cellspacing="0">
 		<tr>
 			
-		<td class="contentCenter-0"  colspan="2">
-			<div id="cse" style="width:100%;height"></div> 
+		<td class="contentCenter-0">
+			 
 			
 			<?php		 
 		if($this->session->userdata('logged_in'))
@@ -86,113 +87,14 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 				</div>
 		</th>
 		 
-			
-				<!-- ISI BAGIAN TENGAH -->                    
-				<td valign="top" class="contentCenter-0">
-                    <div class="contenCenter">
-						       
-						<div class="contentCenter-2">
-							<div  class="divTitleCenter1">
-								<a href="index.php?g=activity_list" style="text-decoration:none; color:#000"> Kegiatan Mendatang</a>
-							</div>	
-							
-							<table class="contentEdit" cellpadding="4" width='100%' height="100%" id="reportTable" style="padding:0 5px 0 5px;">
-								
-								<tr>
-								
-									<td class="listHome">
-										<table border="0" height="100%" cellspacing="0">
-										<tr>
-											<td style="vertical-align:top; text-align:left" height="20%">
-											<a class="titleListDefault"  href="index.php?g=activity&id=<?=$row['activityId']?>" title="<?=$row['name']?>"><?=substr($row['name'],0,50)."..."?></a>
-											</td>
-										</tr>
-										<tr>
-											<td style="vertical-align:top" height="80%">
-											
-														<img border="none" style="padding:5px 5px 1px 0" align="left" src="<?=$row['imagePath']?>" width="60" alt="" />
-												
-											<span class="textHome"> <?=substr($row['description'],0,200)."..."?></span><br>
-											</td>
-										</tr>
-										</table>
-									</td>
-									<?php
-									
-								
-								?>		
-							</tr>			
-							</table>
-							
-							<?php
-							if ($y>0)
-							{
-							?>							
-								<a class="titleTextLeft" style="" href="index.php?g=activity_list" title="Lihat semua Kegiatan">Lihat Semua Kegiatan>></a>										
-							<?php
-							}
-							else
-							{
-								//echo "TIDAK ADA KEGIATAN MENDATANG LAIN";
-							}
-							?>	
-							<br><br>
-							<div  class="divTitleCenter1">
-							<a href="index.php?g=article_list" style="text-decoration:none; color:#000">Artikel Terbaru</a>
-							</div>	
-							
-						<table class="contentEdit" cellpadding="4" width='100%' id="reportTable" style="padding:0 5px 0 5px;">
-							
-							<tr>
-							
-									<td class="listHome">
-										<table border="0" height="100%" cellspacing="0">
-										<tr>
-											<td style="vertical-align:top; text-align:left" height="90%">
-											<a class="titleListDefault"  href="index.php?g=articles&id=<?=$row['articleId']?>" title="<?=$row['title']?>"><?=substr($row['title'],0,50)."..."?></a>
-											<br><span class="textListDefault">
-												<?=!empty($row['authorName'])?"Oleh ".$row['authorName'].", ":''?>
-													<?php echo DateTimeToDate($row['postDate'],'-').", "?>
-													Dibaca: <?php echo $row['hit']?><?if ($numComment>0) echo", ".$numComment." Komentar"?>
-											</span>
-											</td>
-										</tr>
-										<tr>
-											<td style="vertical-align:top" height="90%">
-										
-														<img border="none" style="padding:5px 5px 1px 0" align="left" src="<?=$row['imagePath']?>" width="60" alt="" />
-												
-											<span class="textHome"> <?=substr($row['description'],0,150)."..."?></span><br>
-											</td>
-										</tr>
-										</table>
-									</td>
-									
-						</tr>	
-							
-						</table>							
-							
-							<?php
-							if ($y>0)
-							{
-							?>							
-								<a class="titleTextLeft" style="" href="index.php?g=article_list" title="Lihat semua Artikel">Lihat Semua Artikel>></a>										
-							<?php
-							}
-							else
-							{
-								echo "TIDAK ADA ARTIKEL";
-							}
-							?>	
-						</div>
-					                </td>
 				
 				                                          
             </tr>
         </table>
 	    </div>
-<?php	
-	$footer!=''?$this->load->view($footer):'';	
+<?php
+		
+	$footer != ''?$this->load->view($footer):'';	
 		//$this->load->view('footer');
 ?>
 	</div>                
