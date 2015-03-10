@@ -1,4 +1,8 @@
+<script src="<?=base_url()?>jquery/jquery.min.js"></script>
 
+<script src="<?=base_url()?>bootstrap/js/bootstrap.min.js"></script>
+<script src="<?=base_url()?>bootstrap/assets/docs.min.js"></script>
+		
 <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -15,10 +19,16 @@
         <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Beranda</a></li>
-                <li><a href="<?=base_url()?>index.php/c_informasi">Daftar Informasi</a></li>
-                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_berkala">Informasi berkala</a></li>
-                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_rutin">Informasi Setiap Saat</a></li>
-                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_mendadak">Informasi Serta Merta</a></li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                	Informasi <span class="caret"></span></a>
+                	<ul class="dropdown-menu" role="menu">
+		                <li><a href="<?=base_url()?>index.php/c_informasi">Daftar Informasi</a></li>
+		                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_berkala">Informasi berkala</a></li>
+		                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_rutin">Informasi Setiap Saat</a></li>
+		                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_mendadak">Informasi Serta Merta</a></li>
+                	</ul>
+                </li>
+                
                 <!-- <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
@@ -30,7 +40,7 @@
                     <li><a href="#">Separated link</a></li>
                     <li><a href="#">One more separated link</a></li>
                   </ul>
-                </li> -->
+                </li> --> 
               </ul>
         <?php if(!$this->session->userdata('logged_in')){?>
         <script type="text/javascript">
@@ -65,7 +75,9 @@
 		
 				
         </script>
-          <form class="navbar-form navbar-right" action="./c_authentication/login" method="POST">
+          
+          <div class="navbar-right">
+          <form class="navbar-form" action="<?=base_url()?>index.php/c_authentication/login" method="POST">
             <div class="form-group">
               <input type="text" placeholder="Email" class="form-control" name="email">
             </div>
@@ -73,8 +85,13 @@
               <input type="password" placeholder="Password" class="form-control" name="password">
             </div>
             <button type="submit" class="btn btn-success">Sign in</button>
-            <button class="btn btn-success" ng-click="redirect()">Sign Up</button>
+         	<a class="btn btn-success" href="<?=base_url()?>index.php/c_registration">Sign Up</a>	  
+         	    
           </form>
+          
+         
+         	
+          
           
           <?php 
 			}

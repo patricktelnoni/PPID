@@ -1,14 +1,16 @@
+
+
 <div class="contentMain">		
 				<div class="slideshow">
 					
 					<div>
-	<table class="contentEdit" align="left" width="100%" cellpadding="0" cellspacing="0" border="0">
+	<table  align="left" width="900" cellpadding="0" cellspacing="0" border="0">
 		
 		<tr>
-			<td style="padding:10px 10px 0 10px">
+			<td style="padding:10% 10% 0 8%">
 			<form class="form-horizontal" role="form" method="post"  action="./c_registration/signup" enctype="multipart/form-data">
       <div class="form-group">
-	<table style="margin-left:5%;">
+	<table style="margin-left:5%;" width="700" >
 	<tr>
 						<td align="left"  colspan="2" class="titleContentCenter" style=" width:100%;padding:0 0 0 5px;font-size:16px;">INFORMASI LOGIN</td>	
 					</tr>
@@ -60,7 +62,7 @@
           </div></td>
 	</tr>
 	<tr>
-          <td colspan="2"><label class="col-md-8 control-label"><button type="submit" class="btn btn-success">Daftar</button></label></td>
+          <td colspan="2"><label class="col-md-5 control-label"><button type="submit" class="btn btn-success">Daftar</button></label></td>
     
 	</tr>
 	</table>

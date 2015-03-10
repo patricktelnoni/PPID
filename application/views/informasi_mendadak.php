@@ -1,10 +1,6 @@
 <?php echo $this->session->flashdata('message');?>
 		<?php //print_r($content);?>
-		 <script src="<?=base_url()?>jquery/jquery.min.js"></script>
-		 
-		<link href="<?=base_url()?>bootstrap/carousel.css" rel="stylesheet">
-		<script src="<?=base_url()?>bootstrap/js/bootstrap.min.js"></script>
-		<script src="<?=base_url()?>bootstrap/assets/docs.min.js"></script>		
+			
 			
 			
 			<div class="contentMain" ng-app="artikel" style="padding-top:5%;">		

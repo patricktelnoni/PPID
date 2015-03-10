@@ -1,10 +1,6 @@
 <?php echo $this->session->flashdata('message');?>
 		<?php //print_r($content);?>
-		 <script src="<?=base_url()?>jquery/jquery.min.js"></script>
-		 <link href="<?//=base_url()?>bootstrap/bootstrap-combined.min.css" rel="stylesheet">
-		<link href="<?=base_url()?>bootstrap/carousel.css" rel="stylesheet">
-		<script src="<?=base_url()?>bootstrap/js/bootstrap.min.js"></script>
-		<script src="<?=base_url()?>bootstrap/assets/docs.min.js"></script>		
+<link href="<?=base_url()?>bootstrap/carousel.css" rel="stylesheet">	
 			
 			
 			<div class="contentMain" ng-app="artikel">		
@@ -105,15 +101,44 @@
 				  <div class="row" ng-controller="tabs">
 			
 	<div class="tabbable tabs-left col-sm-3 ">
-      <ul class="nav nav-tabs nav-stacked nav-pills" role="tablist">
-      	 <li ng-class="getTabClass(6)" ng-click="setActiveTab(6)"><a href="#polling" data-toggle="tab">Main</a></li>
-         <li ng-class="getTabClass(1)" ng-click="setActiveTab(1)"><a href="#deal" data-toggle="tab">Profil</a></li>
-         <li ng-class="getTabClass(2)" ng-click="setActiveTab(2)"><a href="#bond" data-toggle="tab">Hak & Kewajiban</a></li>
-         <li ng-class="getTabClass(3)" ng-click="setActiveTab(3)"><a href="#collateral" data-toggle="tab">Prosedur</a></li>
-         <li ng-class="getTabClass(4)" ng-click="setActiveTab(4)"><a href="#rating" data-toggle="tab">Foto Kegiatan</a></li>
+	 <div id='cssmenu'>
+      <ul class="nav nav-tabs nav-stacked nav-pills" role="tablist">     
+      	 <li class="has-sub" ng-class="getTabClass(6)" ng-click="setActiveTab(6)"><a href="#polling" data-toggle="tab">Main</a>
+      	 	<ul>
+               <li><a href='#'><span>Dasar Hukum</span></a></li>               
+               <li class='last'><a href='#'><span>Struktur PPID</span></a></li>
+            </ul> 
+      	 </li>
+         <li class="has-sub" ng-class="getTabClass(1)" ng-click="setActiveTab(1)"><a href="#deal" data-toggle="tab">Profil</a>
+         	<ul>
+               <li><a href='#'><span>Dasar Hukum</span></a></li>               
+               <li class='last'><a href='#'><span>Struktur PPID</span></a></li>
+            </ul> 
+         </li>
+         <li class="has-sub" ng-class="getTabClass(2)" ng-click="setActiveTab(2)"><a href="#bond" data-toggle="tab">Hak & Kewajiban</a>
+         	<ul>
+               <li><a href='#'><span>Pemohon Informasi</span></a></li>
+               
+               <li class='last'><a href='#'><span>Badan Publik</span></a></li>
+            </ul> 
+         </li>
+         <li class="has-sub" ng-class="getTabClass(3)" ng-click="setActiveTab(3)"><a href="#collateral" data-toggle="tab">Prosedur</a>
+         	<ul>
+               <li><a href='#'><span>Permohonan Informasi</span></a></li>
+               <li><a href='#'><span>Pengajuan Keberatan</span></a></li>
+               <li><a href='#'><span>Pengajuan Sengketa</span></a></li>
+               <li><a href='#'><span>Penyelesaian Sengketa</span></a></li>
+               <li class='last'><a href='#'><span>Alur Permohonan</span></a></li>
+            </ul> 
+         </li>
+         <li class="has-sub" ng-class="getTabClass(4)" ng-click="setActiveTab(4)"><a href="#rating" data-toggle="tab">Foto Kegiatan</a>
+         	<ul>             
+               <li class='last'><a href='#'><span>Arsip foto</span></a></li>
+            </ul> 
+         </li>
          <li ng-class="getTabClass(5)" ng-click="setActiveTab(5)"><a href="#polling" data-toggle="tab">Polling</a></li>
       </ul>
-      
+      </div>
     </div>
     <div class="tab-content col-lg-8">
     	<div ng-class="getTabPaneClass(6)" id="main">     
