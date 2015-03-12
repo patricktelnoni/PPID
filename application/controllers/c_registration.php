@@ -39,15 +39,14 @@ class c_registration extends public_abstraction {
 	}
 	
 	public function index()
-	{
-		
+	{		
 		$page['body'] 	= 'registration';
 		$page['header'] = 'header';
+		$page['left'] 	= '';
+		$page['footer'] = '';
 		$page['page'] 	= 'index';
 		$page['right'] 	= 'menukanan';
-		
-						
-		
+			
 		parent::loadPage($page);		
 	}
 }
