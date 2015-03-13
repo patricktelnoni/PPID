@@ -16,7 +16,7 @@ class c_artikel extends private_abstraction {
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
 		$page['footer']	= 'footer';
-		$page['body']	= 'informasi/artikel';
+		$page['body']	= 'artikel/artikel';
 		$page['page']	= 'index';
 				
 		$artikel = $this->m_artikel->read();	
@@ -42,7 +42,7 @@ class c_artikel extends private_abstraction {
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
 		$page['footer']	= 'footer';
-		$page['body']	= 'informasi/createarticle';
+		$page['body']	= 'artikel/createarticle';
 		$page['page']	= 'index';
 		
 		parent::loadPage($page);
@@ -71,7 +71,7 @@ class c_artikel extends private_abstraction {
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
 		$page['footer']	= 'footer';
-		$page['body']	= 'informasi/artikel_read';
+		$page['body']	= 'artikel/artikel_read';
 		$page['page']	= 'index';
 		
 		$artikel['content'] = $this->m_artikel->read();

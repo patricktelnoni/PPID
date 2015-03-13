@@ -61,7 +61,7 @@ class c_authentication extends public_abstraction {
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
 		$page['footer']	= 'footer';
-		$page['body']	= 'artikel';
+		$page['body']	= '/artikel/artikel';
 		$page['page']	= 'index';				
 		
 		$artikel = $this->m_artikel->read();

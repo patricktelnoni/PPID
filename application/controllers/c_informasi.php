@@ -55,7 +55,7 @@ class c_informasi extends public_abstraction {
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
 		$page['footer']	= 'footer';
-		$page['body']	= 'informasi_rutin';
+		$page['body']	= 'informasi/informasi_rutin';
 		$page['page']	= 'index';
 	
 		parent::loadPage($page);

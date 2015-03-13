@@ -1,9 +1,5 @@
-<script src="<?=base_url()?>jquery/jquery.min.js"></script>
-
-<script src="<?=base_url()?>bootstrap/js/bootstrap.min.js"></script>
-<script src="<?=base_url()?>bootstrap/assets/docs.min.js"></script>
-		
-<nav class="navbar navbar-inverse navbar-fixed-top">
+	
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-app="navigasi">
       <div class="container">
         <div class="navbar-header">
           <div class="navbar-header">
@@ -17,9 +13,9 @@
             </div>          
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Beranda</a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+        <ul class="nav navbar-nav" ng-controller="activeLink">
+                <li ng-class="{ active: isActive('beranda')}"><a href="#">Beranda</a></li>
+                <li ng-class="{ active: isActive('informasi')}"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 	Informasi <span class="caret"></span></a>
                 	<ul class="dropdown-menu" role="menu">
 		                <li><a href="<?=base_url()?>index.php/c_informasi">Daftar Informasi</a></li>
@@ -28,6 +24,7 @@
 		                <li><a href="<?=base_url()?>index.php/c_informasi/informasi_mendadak">Informasi Serta Merta</a></li>
                 	</ul>
                 </li>
+                
                 
                 <!-- <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -43,38 +40,7 @@
                 </li> --> 
               </ul>
         <?php if(!$this->session->userdata('logged_in')){?>
-        <script type="text/javascript">
-		/*var app = angular.module('nav', []);
-		app.controller('link', ['$scope', '$http',
-		 function($scope, $http){
-			
-			$scope.redirect = function(){
-				  window.location = "c_registration";
-			}
-			$scope.login = function(){
-				 // window.location = "c_authentication/login";
-				//console.log('Login');
-				$http.post('<?=base_url()?>index.php/c_authentication/login', {'email': $scope.email, 'password': $scope.password})
-				.success(function(data) {
-				    console.log(data);
-
-				    if (!data.success) {
-				      // if not successful, bind errors to error variables
-				      $scope.errorName = data.errors.name;
-				      $scope.errorSuperhero = data.errors.superheroAlias;
-				    } else {
-				      // if successful, bind success message to message
-				      $scope.message = data.message;
-				    }
-				  })
-				.error();          
-	              
-				}
-			}]);*/
-
-		
-				
-        </script>
+        
           
           <div class="navbar-right">
           <form class="navbar-form" action="<?=base_url()?>index.php/c_authentication/login" method="POST">
@@ -97,7 +63,7 @@
 			}
           else {?>
           <div class="navbar-form navbar-right">
-          	<button class="btn btn-success" onclick="window.location='./c_artikel/createarticle'">Buat Artikel</button>
+          	<button class="btn btn-primary" onclick="window.location='./c_artikel/createarticle'">Buat Artikel</button>
           	<button class="btn btn-success" onclick="window.location='./c_authentication/logout'">Log Out</button>
           </div>
            
@@ -108,6 +74,58 @@
       </div>
     </nav>
     
+    <script type="text/javascript">
+		var app = angular.module('navigasi', []);
+		app.controller('activeLink', function($scope, $location){
+			$scope.isActive = function($path){
+				var endpoint = getNextStop($location.absUrl().substr(<?=strlen(base_url().'index.php/c_');?>), (<?=strlen(base_url().'index.php/c_');?>));
+				//alert($path);
+				if($location.absUrl().substr(<?=strlen(base_url().'index.php/c_');?>, endpoint) === $path)
+				{
+					//alert($location.absUrl().substr(<?=strlen(base_url().'index.php/c_');?>, endpoint));	
+					return "active";
+				}
+				else{			
+					//alert(endpoint);
+							
+					//alert($location.absUrl().substr(<?=strlen(base_url().'index.php/c_');?>, 44));
+				}
+			}
+
+			function getNextStop ($url, len){
+				if($url.indexOf("/") === "-1")
+				{
+					//alert("no backslash");
+					return 0;
+				}
+				else{
+					var i = 0;
+					while(i < $url.length)
+					{
+						if($url.charAt(i) == "/")
+						{
+							//alert(i);
+							return i;
+							break;
+						}
+						i++;
+					}
+				}
+				
+			}
+			
+				//alert(<?php echo strlen(base_url().'index.php/c_'); ?>);
+			 		
+			});
+
+		
+				
+    </script>
+        
+   	<script src="<?=base_url()?>jquery/jquery.min.js"></script>
+
+	<script src="<?=base_url()?>bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?=base_url()?>bootstrap/assets/docs.min.js"></script>
     	        
         <div class="clearboth">
         </div>
