@@ -1,6 +1,43 @@
-	
-<nav class="navbar navbar-inverse navbar-fixed-top" ng-app="navigasi">
-      <div class="container">
+ <script type="text/javascript">
+		//var app = angular.module('navigasi', []);
+		//var header = angular.module('ppid', []);
+		//var app = angular.module('header', []);
+		app.controller('checkActive', function($scope, $location){
+			$scope.isActive = function($path){
+				var curUrl 	 = $location.absUrl().substr(<?=strlen(base_url().'index.php/c_')?>);
+				var urlLen	 = <?=strlen(base_url().'index.php/c_')?>;
+				var endpoint = getNextStop(curUrl, urlLen);
+				//alert($path);
+				if($location.absUrl().substr(urlLen, endpoint) === $path)
+				{				
+					return "active";
+				}
+				else{}
+			}
+			
+		});	
+		function getNextStop ($url, len){
+			if($url.indexOf("/") === "-1")
+			{					
+				return 0;
+			}
+			else{
+				var i = 0;
+				while(i < $url.length)
+				{
+					if($url.charAt(i) == "/")
+					{						
+						return i;
+						break;
+					}
+					i++;
+				}
+			}				
+		}
+					
+    </script>	 
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      
         <div class="navbar-header">
           <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -12,8 +49,8 @@
               <a class="navbar-brand" href="#">PPID Bontang</a>
             </div>          
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav" ng-controller="activeLink">
+        <div id="navbar" class="navbar-collapse collapse" >
+        <ul class="nav navbar-nav" ng-controller='checkActive'>
                 <li ng-class="{ active: isActive('beranda')}"><a href="#">Beranda</a></li>
                 <li ng-class="{ active: isActive('informasi')}"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 	Informasi <span class="caret"></span></a>
@@ -63,8 +100,8 @@
 			}
           else {?>
           <div class="navbar-form navbar-right">
-          	<button class="btn btn-primary" onclick="window.location='./c_artikel/createarticle'">Buat Artikel</button>
-          	<button class="btn btn-success" onclick="window.location='./c_authentication/logout'">Log Out</button>
+          	<button class="btn btn-primary" onclick="window.location='<?=base_url()?>index.php/c_artikel/createarticle'">Buat Artikel</button>
+          	<button class="btn btn-success" onclick="window.location='<?=base_url()?>index.php/c_authentication/logout'">Log Out</button>
           </div>
            
           <?php
@@ -73,60 +110,11 @@
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
-    
-    <script type="text/javascript">
-		var app = angular.module('navigasi', []);
-		app.controller('activeLink', function($scope, $location){
-			$scope.isActive = function($path){
-				var endpoint = getNextStop($location.absUrl().substr(<?=strlen(base_url().'index.php/c_');?>), (<?=strlen(base_url().'index.php/c_');?>));
-				//alert($path);
-				if($location.absUrl().substr(<?=strlen(base_url().'index.php/c_');?>, endpoint) === $path)
-				{
-					//alert($location.absUrl().substr(<?=strlen(base_url().'index.php/c_');?>, endpoint));	
-					return "active";
-				}
-				else{			
-					//alert(endpoint);
-							
-					//alert($location.absUrl().substr(<?=strlen(base_url().'index.php/c_');?>, 44));
-				}
-			}
+   
+   
 
-			function getNextStop ($url, len){
-				if($url.indexOf("/") === "-1")
-				{
-					//alert("no backslash");
-					return 0;
-				}
-				else{
-					var i = 0;
-					while(i < $url.length)
-					{
-						if($url.charAt(i) == "/")
-						{
-							//alert(i);
-							return i;
-							break;
-						}
-						i++;
-					}
-				}
-				
-			}
-			
-				//alert(<?php echo strlen(base_url().'index.php/c_'); ?>);
-			 		
-			});
-
-		
-				
-    </script>
-        
-   	<script src="<?=base_url()?>jquery/jquery.min.js"></script>
-
-	<script src="<?=base_url()?>bootstrap/js/bootstrap.min.js"></script>
-	<script src="<?=base_url()?>bootstrap/assets/docs.min.js"></script>
-    	        
+ 
+   	
         <div class="clearboth">
         </div>
  

@@ -3,13 +3,13 @@
 			
 			
 			
-			<div class="contentMain" ng-app="artikel" style="padding-top:5%;">		
+			<div class="contentMain" style="padding-top:5%;">		
 				<div class="slideshow">
 					
 						
 					
 					<script type="text/javascript">
-					$(document).ready(function() {
+					/* $(document).ready(function() {
 					    $( '.dropdown' ).hover(
 					        function(){
 					            $(this).children('.sub-menu').slideDown(200);
@@ -18,11 +18,11 @@
 					            $(this).children('.sub-menu').slideUp(200);
 					        }
 					    );
-					});
+					}); */
 					
-					var artikel = angular.module('artikel', []);					 
+					//var artikel = angular.module('ppid', []);					 
 					
-				 	artikel.controller('tabs', function($scope){
+				 	app.controller('tabs', function($scope){
 
 				 		/*$scope.changeTab = function(tab) {
 					 		console.log('Tab controller here...');
@@ -57,7 +57,7 @@
 				 		  initTabs();
 				 		  $scope.setActiveTab(6);
 					 	});
-				 	artikel.controller('profil', function($scope){
+				 	app.controller('profil', function($scope){
 				 		$scope.iMainTabIndex = 1;
 				 		  $scope.iTab1Index = 1;
 					 	});

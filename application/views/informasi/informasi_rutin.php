@@ -1,14 +1,14 @@
 	
 		<link href="<?=base_url()?>styles/sidenav.css" rel="stylesheet">	
 			
-			<div class="contentMain" ng-app="artikel" style="padding-top:5%;">		
+			<div class="contentMain" style="padding-top:5%;">		
 				<div class="slideshow">
 					
 						
 					
 					<script type="text/javascript">
 					
-					var artikel = angular.module('artikel', []);					 
+					var artikel = angular.module('ppid', []);					 
 					
 				 	artikel.controller('tabs', function($scope){
 

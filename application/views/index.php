@@ -3,52 +3,22 @@
 <meta charset="UTF-8">
 <head>
 <title>Web PPID Bontang</title>
-<link rel="shortcut icon" href="./favicon.ico"/>
 <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
-<link href="<?//=base_url()?>styles/style.css" rel="stylesheet" type="text/css" />
-<link href="<?=base_url()?>styles/menu.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="<?=base_url()?>styles/dropdown/menuatas.css" />
-<link href="<?=base_url()?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?=base_url()?>bootstrap/css/bootstrap.css" rel="stylesheet">
 
-<style type="text/css">
-<!--
-.style1 {font-size: 18px}
--->
-</style>
-<!--
-.style1 {font-size: 18px}
--->
-</style>
+
 <script type="text/javascript" src="<?=base_url()?>angular/angular.js"></script>
-
-
-
-<link rel="stylesheet" href="<?=base_url()?>styles/slideshowtheme.css" type="text/css" media="screen" charset="utf-8" />
-<script type="text/javascript">
-/* $.(document).ready(function() {
-$('.slideshow').before('<div id="navg">').cycle({
-fx:'fade',
-speed: '1000',
-timeout: 4000,
-pager: '#navg',
-pagerClick: function(){$('.slideshow').cycle('pause');}
-});
-}); */
-</script>
-
-<!-- <script type="text/javascript" src="./library/functions.js"></script>
-<script type="text/javascript" language="javascript" src="./library/stuHover.js"></script>
-<script type="text/javascript" src="./library/scrolltext.js"></script> -->
+<script type="text/javascript" src="<?=base_url()?>js/app.js"></script>
 </head>
 
-<body>
+<body ng-app="ppid">
 <!-- <p>Nothing here {{'yet' + '!'}}</p> <br>
-		 <p>1 + 2 = {{ 1 + 2 }}</p> -->	 
+		 <p>1 + 2 = {{ 1 + 2 }}</p>	  -->
 		
 	<div class="wrap">
 		<?php $header!=''?$this->load->view($header):'';?>
 		<div class="menu floatLeft">
-		<?php $this->load->view('/library/menu.php');?>
+		
 		
 		</div>           
 		<div class="clearboth"></div>
@@ -59,22 +29,18 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 		<td class="contentCenter-0">
 			 
 			
-			<?php		 
-		if($this->session->userdata('logged_in'))
-		{
-			echo anchor('c_artikel/createarticle', 'Buat tulisan', 'title="Buat tulisan baru"');
-			}
+			<?php	
 			$body!=''?$this->load->view($body):'';
 			//$this->load->view($body);
 			?>
 			<div class="clearboth"></div>   
 			</td>
-			<?php $right !=''?$this->load->view($right):'';//$this->load->view('menukanan');?>
+			
 			  
 		</tr>
          <tr>
 				<!-- ISI BAGIAN KIRI -->
-				<?php// include("view/menuhome.php"); ?>      
+				    
 
 		<th bgcolor="#FFFFFF" class="contentLeft-1" style="padding-top:5px">
 			 <!-- <div class="leftAtas">
@@ -100,4 +66,8 @@ pagerClick: function(){$('.slideshow').cycle('pause');}
 	</div>                
 
 </body>
+
+  	<script src="<?=base_url()?>jquery/jquery.min.js"></script>   		
+	<script src="<?=base_url()?>bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?=base_url()?>bootstrap/assets/docs.min.js"></script>
 </html>

@@ -4,8 +4,8 @@
 <link href="<?=base_url()?>styles/sidenav.css" rel="stylesheet">
 			
 			
-			<div class="contentMain" ng-app="artikel">		
-				<div class="slideshow">
+	<div class="contentMain">		
+	<div class="slideshow">
 					
 	
 					
@@ -26,8 +26,7 @@
               
             </div>
           </div>
-        </div>        
-        
+        </div>       
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -41,8 +40,8 @@
 					
 					<script type="text/javascript">
 					
-					var artikel = angular.module('artikel', []);					 
-					artikel.controller('LoopController', function($scope) {
+					//var app = angular.module('ppid', []);					 
+					app.controller('LoopController', function($scope) {
 						 $scope.items = [
 						<?php
 						 $i=0; 
@@ -56,7 +55,7 @@
 								}?>				 
 					 ];				
 			 	});
-				 	artikel.controller('tabs', function($scope){
+				 	app.controller('tabs', function($scope){
 
 				 		/*$scope.changeTab = function(tab) {
 					 		console.log('Tab controller here...');
@@ -91,7 +90,7 @@
 				 		  initTabs();
 				 		  $scope.setActiveTab(6);
 					 	});
-				 	artikel.controller('profil', function($scope){
+				 	app.controller('profil', function($scope){
 				 		$scope.iMainTabIndex = 1;
 				 		  $scope.iTab1Index = 1;
 					 	});
@@ -99,7 +98,7 @@
  			</script>
 				 </div>
 				 
-				  <div class="row" ng-controller="tabs">
+	<div class="row" ng-controller="tabs">
 			
 	<div class="tabbable tabs-left col-sm-3 ">
 	 <div id='cssmenu'>
@@ -156,41 +155,28 @@
           <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
-        </div>
-        
+        </div>        
         <div ng-class="getTabPaneClass(1)" id="deal" ng-controller="profil">
         <div ng-class="col-lg-8">
         	<ul class="nav nav-tabs">
 		        <li ng-class="{'active': iMainTabIndex == 1}"><a href="" ng-click="iMainTabIndex = 1">Dasar Hukum</a></li>
-		        <li ng-class="{'active': iMainTabIndex == 2}"><a href="" ng-click="iMainTabIndex = 2">Struktur PPID</a></li>
-		        
+		        <li ng-class="{'active': iMainTabIndex == 2}"><a href="" ng-click="iMainTabIndex = 2">Struktur PPID</a></li>		        
 		     </ul> 
 		     <div class="tab-content ">
-	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 1}">
-	          	
-		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-		                  
-	        </div> 
-	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 2}">
-	          
-		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-		          
+	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 1}">	          	
+		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>		                  
 	        </div>
-	        
-	      </div>
-        	
-        </div>    
-            
-            
-         </div>       
-        
+	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 2}">	          
+		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>		          
+	        </div>	        
+	      </div>        	
+        </div>        
+        </div>        
         <div ng-class="getTabPaneClass(2)" id="bond" ng-controller="profil">     
           <div ng-class="col-lg-8">
         	<ul class="nav nav-tabs">        	
 		        <li ng-class="{'active': iMainTabIndex == 1}"><a href="" ng-click="iMainTabIndex = 1">Permohonan Informasi</a></li>
-		        <li ng-class="{'active': iMainTabIndex == 2}"><a href="" ng-click="iMainTabIndex = 2">Badan Publik</a></li>
-		        
-		        
+		        <li ng-class="{'active': iMainTabIndex == 2}"><a href="" ng-click="iMainTabIndex = 2">Badan Publik</a></li>		        
 		     </ul> 
 		     <div class="tab-content ">
 	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 1}">	          	
@@ -199,11 +185,9 @@
 	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 2}">	          
 		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>		          
 	        </div>        
-	      </div>
-        	
+	      </div>        	
         	</div> 
-        </div>
-        
+        </div>        
         <div ng-class="getTabPaneClass(3)" id="collateral" ng-controller="profil">     
           <div ng-class="col-lg-8">
         	<ul class="nav nav-tabs">        	
@@ -211,8 +195,7 @@
 		        <li ng-class="{'active': iMainTabIndex == 2}"><a href="" ng-click="iMainTabIndex = 2">Pengajuan Keberatan</a></li>
 		        <li ng-class="{'active': iMainTabIndex == 3}"><a href="" ng-click="iMainTabIndex = 3">Pengajuan Sengketa</a></li>
 		        <li ng-class="{'active': iMainTabIndex == 4}"><a href="" ng-click="iMainTabIndex = 4">Penyelesaian Sengketa</a></li>
-		        <li ng-class="{'active': iMainTabIndex == 5}"><a href="" ng-click="iMainTabIndex = 5">Alur Permohonan</a></li>
-		        
+		        <li ng-class="{'active': iMainTabIndex == 5}"><a href="" ng-click="iMainTabIndex = 5">Alur Permohonan</a></li>		        
 		     </ul> 
 		     <div class="tab-content ">
 	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 1}">
@@ -231,78 +214,43 @@
 	        </div>
 	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 5}">	          
 		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>		          
-	        </div>
-	        
-	      </div>
-        	
+	        </div>	        
+	      </div>        	
         	</div> 
-        </div>
-        
+        </div>        
         <div ng-class="getTabPaneClass(4)" id="rating" ng-controller="profil">     
           <div ng-class="col-lg-8">
         	<ul class="nav nav-tabs">
 		        <li ng-class="{'active': iMainTabIndex == 1}"><a href="" ng-click="iMainTabIndex = 1">Arsip foto</a></li>
-		        <li ng-class="{'active': iMainTabIndex == 2}"><a href="" ng-click="iMainTabIndex = 2">Daftar album</a></li>
-		        
+		        <li ng-class="{'active': iMainTabIndex == 2}"><a href="" ng-click="iMainTabIndex = 2">Daftar album</a></li>		        
 		     </ul> 
 		     <div class="tab-content ">
-	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 1}">
-	          	
-		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-		                  
+	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 1}">	          	
+		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>		                  
 	        </div> 
-	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 2}">
-	          
-		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-		          
-	        </div>
-	        
-	      </div>
-        	
+	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 2}">	          
+		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>		          
+	        </div>	        
+	      </div>        	
         </div> 
-        </div>      
+      </div>      
       
       <div ng-class="getTabPaneClass(5)" id="polling" ng-controller="profil">     
           <div ng-class="col-lg-8">
         	<ul class="nav nav-tabs">
 		        <li ng-class="{'active': iMainTabIndex == 1}"><a href="" ng-click="iMainTabIndex = 1">Dasar Hukum</a></li>
-		        <li ng-class="{'active': iMainTabIndex == 2}"><a href="" ng-click="iMainTabIndex = 2">Struktur PPID</a></li>
-		        
+		        <li ng-class="{'active': iMainTabIndex == 2}"><a href="" ng-click="iMainTabIndex = 2">Struktur PPID</a></li>		        
 		     </ul> 
 		     <div class="tab-content ">
-	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 1}">
-	          	
-		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-		                  
+	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 1}">	          	
+		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>		                  
 	        </div> 
-	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 2}">
-	          
-		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-		          
-	        </div>
-	        
+	        <div class="tab-pane col-lg-10" ng-class="{'active': iMainTabIndex == 2}">	          
+		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>		          
+	        </div>	        
 	      </div>
         	
         </div> 
         </div>      
       </div>
-        <!-- /.col-lg-4 -->
-        
-      
-      <!-- /.row -->
-				 
-				<!-- <div class="mainBatas"></div>
-				<div class="listTopik">
-				<span style="color:#a8480e"><B><u>HEADLINE</u></B></span><br>
-					
-					<div style="padding-top:6px"><a class="hrefTopik"><span style="font-weight:bold" title=""></span></a><br>
-					<span class="textRight"></span>
-					</div>
-					<!--<br>
-					<a class="hrefTopik" href="index.php?g="><u>more</u>
-					</a>-->
-					
-				<!-- </div>-->
-			</div>
-              
-			
+    </div>

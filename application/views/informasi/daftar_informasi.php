@@ -2,30 +2,11 @@
 		<?php //print_r($content);?>
 		 
 		<link href="<?=base_url()?>styles/sidenav.css" rel="stylesheet">
-			
-			<div class="contentMain" ng-app="artikel" style="padding-top:5%;">		
-				<div class="slideshow">
+<script type="text/javascript">
 					
-						
+					//var app = angular.module('ppid', []);					 
 					
-					<script type="text/javascript">
-					
-					var artikel = angular.module('artikel', []);					 
-					artikel.controller('LoopController', function($scope) {
-						 $scope.items = [
-						<?php
-						 $i=0; 
-						foreach($content as $key )
-						{ ?>
-						 {title: '<?=$key['judul']?>' , content: '<?=$key['isi']?>', id: <?=$key['artikelid']?>}
-						 <?php					 
-								 if($i != $total-1)
-								 	{echo ", \n";}					 
-								 $i++;						
-								}?>				 
-					 ];				
-			 	});
-				 	artikel.controller('tabs', function($scope){
+				 	app.controller('tabController', function($scope){
 
 				 		/*$scope.changeTab = function(tab) {
 					 		console.log('Tab controller here...');
@@ -60,15 +41,14 @@
 				 		  initTabs();
 				 		  $scope.setActiveTab(6);
 					 	});
-				 	artikel.controller('profil', function($scope){
+				 	app.controller('profil', function($scope){
 				 		$scope.iMainTabIndex = 1;
 				 		  $scope.iTab1Index = 1;
 					 	});
 				 	
- 			</script>
-				 </div>
-				 
-				  <div class="row" ng-controller="tabs">
+ 			</script>			
+<div class="contentMain">	
+	<div class="row" ng-controller="tabController" style="padding-top:5%;">
 			
 	<div class="tabbable tabs-left col-sm-3 ">
       <div id='cssmenu'>
@@ -111,6 +91,7 @@
       </div>
       
     </div>
+    
     <div class="tab-content col-lg-8">
     	<div ng-class="getTabPaneClass(6)" id="main">     
           <div class="col-lg-5">
@@ -127,7 +108,7 @@
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
         </div>
-        
+       
         <div ng-class="getTabPaneClass(1)" id="deal" ng-controller="profil">
         <div ng-class="col-lg-8">
         	<ul class="nav nav-tabs">
@@ -254,25 +235,6 @@
 	      </div>
         	
         </div> 
-        </div>      
-      </div>
-        <!-- /.col-lg-4 -->
-        
-      
-      <!-- /.row -->
-				 
-				<!-- <div class="mainBatas"></div>
-				<div class="listTopik">
-				<span style="color:#a8480e"><B><u>HEADLINE</u></B></span><br>
-					
-					<div style="padding-top:6px"><a class="hrefTopik"><span style="font-weight:bold" title=""></span></a><br>
-					<span class="textRight"></span>
-					</div>
-					<!--<br>
-					<a class="hrefTopik" href="index.php?g="><u>more</u>
-					</a>-->
-					
-				<!-- </div>-->
-			</div>
-              
-			
+        </div>
+      </div>   
+    </div>
