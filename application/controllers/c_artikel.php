@@ -1,11 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 require_once '/abstraction/private_abstraction.php';
 
-class c_artikel extends private_abstraction {
+class c_artikel extends private_abstraction{ 
 	
+	private $private;
 	public function __construct() {
 		parent:: __construct();
 		
+		//$private->loginCheck();
 		$this->load->model('m_artikel');
 	}
 	public function index()
@@ -13,20 +16,20 @@ class c_artikel extends private_abstraction {
 		$data = array();
 		
 		$page['header']	= 'header';	
-		$page['left']	= '';
-		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer';
-		$page['body']	= 'artikel/artikel';
-		$page['page']	= 'index';
+		$page['left']		= '';
+		$page['right']		= 'menukanan';
+		$page['footer']		= 'footer';
+		$page['body']		= 'artikel/artikel';
+		$page['page']		= 'index';
 				
-		$artikel = $this->m_artikel->read();	
+		$artikel 				= $this->m_artikel->read();	
 		
 		$i=0;		
 	 	foreach ($artikel->result_array() as $row)
 		{	
 			$data['content'][$i]['artikelid']	= $row['artikelid'];
 			$data['content'][$i]['judul'] 		= $row['judul'];
-			$data['content'][$i]['isi'] 		= $row['isi'];
+			$data['content'][$i]['isi'] 			= $row['isi'];
 			
 			$i++;
 		} 
@@ -37,13 +40,13 @@ class c_artikel extends private_abstraction {
 	}
 	
 	public function createarticle()
-	{
+	{		
 		$page['header']	= 'header'; 
-		$page['left']	= '';
-		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer';
-		$page['body']	= 'artikel/createarticle';
-		$page['page']	= 'index';
+		$page['left']		= '';
+		$page['right']		= 'menukanan';
+		$page['footer']		= 'footer';
+		$page['body']		= 'artikel/createarticle';
+		$page['page']		= 'index';
 		
 		parent::loadPage($page);
 		
@@ -52,9 +55,11 @@ class c_artikel extends private_abstraction {
 	public function save()
 	{		
 		//print_r($_POST);
-		$data = array(
+		//echo $_FILES[];
+		print_r($_FILES['uploadFile']['name']);
+		/* $data = array(
 				'penulis'	=> $this->session->userdata('username'),				
-				'isi'		=> $this->input->post('isi'),
+				'isi'			=> $this->input->post('isi'),
 				'judul'		=> $this->input->post('judul')
 		);
 		if($this->input->post('id') == '')
@@ -62,20 +67,21 @@ class c_artikel extends private_abstraction {
 		else
 			$this->m_artikel->update($data);
 		
-		redirect('c_artikel');
+		redirect('c_artikel'); */
 	}
 	
 	public function read()
 	{
 		$page['header']	= 'header';
-		$page['left']	= '';
-		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer';
-		$page['body']	= 'artikel/artikel_read';
-		$page['page']	= 'index';
+		$page['left']		= '';
+		$page['right']		= 'menukanan';
+		$page['footer']		= 'footer';
+		$page['body']		= 'artikel/artikel_read';
+		$page['page']		= 'index';
 		
 		$artikel['content'] = $this->m_artikel->read();
 		
 		parent::loadPage(array_merge($page, $artikel));
 	}
+	
 }

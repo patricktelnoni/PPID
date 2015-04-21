@@ -1,32 +1,37 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once 'c_konten.php';
 require_once '/abstraction/public_abstraction.php';
-
-class c_informasi extends public_abstraction {
+class c_informasi extends public_abstraction{ 
+	
+	private $pa;
+	
 	
 	public function __construct() {
-		parent:: __construct();
 		
-		$this->load->model('m_artikel');
+		parent:: __construct();		
+		$this->load->helper('url');
+		
+		$this->load->model('m_informasi');
 	}
 	public function index()
 	{		
 		$data = array();
 		
 		$page['header']	= 'header';	
-		$page['left']	= '';
-		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer';
-		$page['body']	= 'informasi/daftar_informasi';
-		$page['page']	= 'index';
+		$page['left']		= '';
+		$page['right']		= 'menukanan';
+		$page['footer']		= 'footer';
+		$page['body']		= 'informasi/daftar_informasi';
+		$page['page']		= 'index';
 				
-		$artikel = $this->m_artikel->read();	
+		$artikel = $this->m_informasi->read();	
 		
 		$i=0;		
 	 	foreach ($artikel->result_array() as $row)
 		{	
 			$data['content'][$i]['artikelid']	= $row['artikelid'];
 			$data['content'][$i]['judul'] 		= $row['judul'];
-			$data['content'][$i]['isi'] 		= $row['isi'];
+			$data['content'][$i]['isi'] 			= $row['isi'];
 			
 			$i++;
 		} 
@@ -36,6 +41,22 @@ class c_informasi extends public_abstraction {
 		parent::loadPage(array_merge($page, $data));
 	}
 	
+	public function getChildren()
+	{	
+		$data = array();
+		$i = 0;
+		
+		$submenu = $this->m_informasi->getChildren();
+		
+		foreach ($submenu->result_array() as $res)
+		{			
+			$data[$i]['id']	= $res['idtipe'];
+			$data[$i]['name'] 		= $res['tipeinfo'];
+			$i++;
+		}
+		
+		echo json_encode($data);
+	}
 	public function informasi_berkala()
 	{
 		$page['header']	= 'header';	

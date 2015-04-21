@@ -1,19 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-
 class private_abstraction extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('m_artikel');
+		//$this->load->model('m_artikel');
 		$this->loginCheck();
+		//echo "private abstraction construct";
 	}
 	
 	public function index()
 	{
-		$data = array();
+		/* $data = array();
 		
 		$page['header']	= 'header';	
 		$page['left']	= '';
@@ -36,10 +35,10 @@ class private_abstraction extends CI_Controller {
 		$data['total']		= $artikel->num_rows();
 		//print_r($data);
 		
-		$this->loadPage(array_merge($page, $data));
+		$this->loadPage(array_merge($page, $data)); */
 	}
 	
-	private function loginCheck()
+	public function loginCheck()
 	{
 		if (!$this->session->userdata ('logged_in')) {
 			redirect ("c_authentication");

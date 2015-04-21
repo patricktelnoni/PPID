@@ -1,7 +1,4 @@
- <script type="text/javascript">
-		//var app = angular.module('navigasi', []);
-		//var header = angular.module('ppid', []);
-		//var app = angular.module('header', []);
+ <script type="text/javascript">		
 		app.controller('checkActive', function($scope, $location){
 			$scope.isActive = function($path){
 				var curUrl 	 = $location.absUrl().substr(<?=strlen(base_url().'index.php/c_')?>);
@@ -50,7 +47,7 @@
             </div>          
         </div>
         <div id="navbar" class="navbar-collapse collapse" >
-        <ul class="nav navbar-nav" ng-controller='checkActive'>
+        	<ul class="nav navbar-nav" ng-controller='checkActive'>
                 <li ng-class="{ active: isActive('beranda')}"><a href="#">Beranda</a></li>
                 <li ng-class="{ active: isActive('informasi')}"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 	Informasi <span class="caret"></span></a>
