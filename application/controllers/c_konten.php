@@ -6,7 +6,8 @@ class c_konten extends private_abstraction {
 	public function __construct() {
 		parent:: __construct();
 		$this->load->helper('url');
-		//$this->load->model('m_artikel');
+		$this->load->model('m_konten');
+		$this->load->helper("file");
 		//$this->load->model('m_informasi');
 	}
 	public function index()
@@ -14,6 +15,35 @@ class c_konten extends private_abstraction {
 		
 	}	
 	
+	public function postAttachment()
+	{	
+		if(isset($_FILES)){			
+			$path = './upload/'.$_FILES['file']['name'];
+			if (file_exists("./upload/" . $_FILES['file']['name']."/"))
+			{
+				echo "{success:false, errors:{reason: 'File untuk nama yang sama sudah diupload.' }}";
+			}
+			else
+			{
+				if(move_uploaded_file($_FILES["file"]["tmp_name"], "./upload/" . $_FILES['file']['name']))
+				{				
+					$this->m_konten->postAttachment($path);
+				}
+			}			
+		}				
+	}
+	public function removeAttachment()
+	{
+		$filePath = $this->m_konten->removeAttachment();
+		
+		if($filePath->num_rows() > 0)
+		{	
+			$path = $filePath->row();		
+			unlink($path->file);
+		}
+		
+		
+	}
 	public function save()
 	{		
 		print_r($_POST);
@@ -30,8 +60,7 @@ class c_konten extends private_abstraction {
 				$this->m_artikel->create($data);
 			else
 				$this->m_artikel->update($data); */
-		}
-			
+		}			
 		else{
 			if(isset($_FILES))
 			{
