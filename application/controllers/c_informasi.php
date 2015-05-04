@@ -29,9 +29,10 @@ class c_informasi extends public_abstraction{
 		$i=0;		
 	 	foreach ($artikel->result_array() as $row)
 		{	
-			$data['content'][$i]['artikelid']	= $row['artikelid'];
-			$data['content'][$i]['judul'] 		= $row['judul'];
-			$data['content'][$i]['isi'] 			= $row['isi'];
+			$data['content'][$i]['infoid']	= $row['infoid'];
+			$data['content'][$i]['judul'] 	= $row['judul'];
+			$data['content'][$i]['isi'] 		= $row['isi'];
+			$data['content'][$i]['link']		= base_url().$row['file'];
 			
 			$i++;
 		} 
@@ -39,37 +40,57 @@ class c_informasi extends public_abstraction{
 		//print_r($data);
 		
 		parent::loadPage(array_merge($page, $data));
-	}
+	}	
 	
-	public function getChildren()
-	{	
+	
+	
+	public function getContentInformasi()
+	{
 		$data = array();
-		$i = 0;
+		$content = $this->m_informasi->readInformasi();
 		
-		$submenu = $this->m_informasi->getChildren();
-		
-		foreach ($submenu->result_array() as $res)
-		{			
-			$data[$i]['id']	= $res['idtipe'];
-			$data[$i]['name'] 		= $res['tipeinfo'];
+		$i=0;
+		foreach ($content->result_array() as $row)
+		{
+			$data[$i]['infoid']	= $row['infoid'];
+			$data[$i]['judul'] 	= $row['judul'];
+			$data[$i]['isi'] 		= $row['isi'];
+			$data[$i]['link']	= base_url().$row['file'];
 			$i++;
 		}
 		
 		echo json_encode($data);
 	}
+	
 	public function informasi_berkala()
 	{
-		$page['header']	= 'header';	
+		$page['header']	= 'header';
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
 		$page['footer']	= 'footer';
 		$page['body']	= 'informasi/informasi_berkala';
 		$page['page']	= 'index';
-		
-		parent::loadPage($page);
-		
-	}
 	
+		if($this->uri->segment(3))
+			$artikel = $this->m_informasi->readInformasi();
+		else
+			$artikel = $this->m_informasi->readInformasi(1);
+	
+		$i=0;
+		foreach ($artikel->result_array() as $row)
+		{
+			$data['content'][$i]['infoid']	= $row['infoid'];
+			$data['content'][$i]['judul'] 	= $row['judul'];
+			$data['content'][$i]['isi'] 		= $row['isi'];
+			$data['content'][$i]['link']		= base_url().$row['file'];
+	
+			$i++;
+		}
+		$data['total']		= $artikel->num_rows();
+	
+		parent::loadPage(array_merge($page, $data));
+	
+	}
 	public function informasi_rutin()
 	{
 		$page['header']	= 'header';
@@ -78,8 +99,25 @@ class c_informasi extends public_abstraction{
 		$page['footer']	= 'footer';
 		$page['body']	= 'informasi/informasi_rutin';
 		$page['page']	= 'index';
-	
-		parent::loadPage($page);
+		
+		if($this->uri->segment(3))
+			$artikel = $this->m_informasi->readInformasi();
+		else 
+			$artikel = $this->m_informasi->readInformasi(2);
+		
+		$i=0;
+		foreach ($artikel->result_array() as $row)
+		{
+			$data['content'][$i]['infoid']	= $row['infoid'];
+			$data['content'][$i]['judul'] 	= $row['judul'];
+			$data['content'][$i]['isi'] 		= $row['isi'];
+			$data['content'][$i]['link']		= base_url().$row['file'];
+				
+			$i++;
+		}
+		$data['total']		= $artikel->num_rows();
+		
+		parent::loadPage(array_merge($page, $data));	
 	
 	}
 	
@@ -92,7 +130,24 @@ class c_informasi extends public_abstraction{
 		$page['body']	= 'informasi/informasi_mendadak';
 		$page['page']	= 'index';
 	
-		parent::loadPage($page);
+		if($this->uri->segment(3))
+			$artikel = $this->m_informasi->readInformasi();
+		else 
+			$artikel = $this->m_informasi->readInformasi(3);
+		
+		$i=0;
+		foreach ($artikel->result_array() as $row)
+		{
+			$data['content'][$i]['infoid']	= $row['infoid'];
+			$data['content'][$i]['judul'] 	= $row['judul'];
+			$data['content'][$i]['isi'] 		= $row['isi'];
+			$data['content'][$i]['link']		= base_url().$row['file'];
+				
+			$i++;
+		}
+		$data['total']		= $artikel->num_rows();
+		
+		parent::loadPage(array_merge($page, $data));
 	
 	}
 	public function save()

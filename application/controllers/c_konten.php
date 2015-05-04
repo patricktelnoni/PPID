@@ -4,11 +4,9 @@ require_once '/abstraction/private_abstraction.php';
 class c_konten extends private_abstraction {
 	
 	public function __construct() {
-		parent:: __construct();
-		$this->load->helper('url');
-		$this->load->model('m_konten');
-		$this->load->helper("file");
-		//$this->load->model('m_informasi');
+		parent:: __construct();		
+		$this->load->helper(array("file", 'url'));
+		$this->load->model(array('m_informasi', 'm_artikel', 'm_konten'));
 	}
 	public function index()
 	{		
@@ -40,39 +38,45 @@ class c_konten extends private_abstraction {
 		{	
 			$path = $filePath->row();		
 			unlink($path->file);
-		}
-		
-		
+		}	
 	}
 	public function save()
 	{		
-		print_r($_POST);
+		//print_r($_POST);
 		$tipe = $this->input->post('tipe');
 		
-		if($tipe == 'kegiatan' OR $tipe == 'beritadinas' OR $tipe == 'umum')
-		{
-			$data = array(
-					'penulis'	=> $this->session->userdata('username'),
-					'isi'			=> $this->input->post('isi'),
-					'judul'		=> $this->input->post('judul')
-			);
-			/* if($this->input->post('id') == '')
+		$data = array(
+				'penulis'	=> $this->session->userdata('username'),
+				'isi'			=> $this->input->post('isi'),
+				'judul'		=> $this->input->post('judul')
+		);
+		if($tipe == '1' OR $tipe == '2' OR $tipe == '3')
+		{			
+			if($this->input->post('id') == '')
 				$this->m_artikel->create($data);
 			else
-				$this->m_artikel->update($data); */
+				$this->m_artikel->update($data);
 		}			
 		else{
-			if(isset($_FILES))
-			{
-				print_r($_FILES);
+			//print_r($_POST);
+			$data2 		= array('tgl' 			=> date("Y-m-d"),
+										'tipe_info' 	=> $this->input->post('menu'),
+										'sub_info' 	=> $this->input->post('submenu'));
+			$data 		= array_merge($data, $data2);
+			$isToken 	= $this->m_informasi->cekToken();
+			
+			//print_r($isToken);
+			if($this->input->post('id') == ''){
+				if($isToken->num_rows() > 0)
+					$this->m_informasi->updatePost($data, $isToken->row()->infoid);
+				else 
+					$this->m_informasi->create($data);
+			}
+			else{
+				$this->m_informasi->update($data);
 			}
 		}		
-		//redirect('c_artikel');
-	}
-	
-	public function upload()
-	{
-		
+		redirect('c_artikel');
 	}
 	
 	public function read()

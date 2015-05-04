@@ -10,6 +10,7 @@ class c_artikel extends private_abstraction{
 		
 		//$private->loginCheck();
 		$this->load->model('m_artikel');
+		$this->load->helper('string');
 	}
 	public function index()
 	{		
@@ -48,15 +49,21 @@ class c_artikel extends private_abstraction{
 		$page['body']		= 'artikel/createarticle';
 		$page['page']		= 'index';
 		
-		parent::loadPage($page);
+		$data['token']		= random_string('alnum', 30);	
+		
+		parent::loadPage(array_merge($page, $data));
 		
 	}
 	
+	public function postAttachment()
+	{
+		print_r($_FILES);
+	}
 	public function save()
 	{		
 		//print_r($_POST);
 		//echo $_FILES[];
-		print_r($_FILES['uploadFile']['name']);
+		//print_r($_FILES['uploadFile']['name']);
 		/* $data = array(
 				'penulis'	=> $this->session->userdata('username'),				
 				'isi'			=> $this->input->post('isi'),

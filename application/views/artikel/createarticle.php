@@ -47,8 +47,14 @@
 				
 		<form ng-controller="formController"   method="post" id="myAwesomeDropzone" class="dropzone fallback dz-clickable"
 			enctype="multipart/form-data" accept-charset="utf-8" 
-			action="<?=base_url()?>index.php/c_konten/save" style="padding-top: 10%; width:100%;">
-			<table>	
+			action="<?=base_url()?>index.php/c_konten/save/<?=$token?>" style="padding-top: 10%; width:100%;">
+			<table>
+				<tr>
+					<td><label class="col-md-8 control-label">Judul</label></td>
+	          		<td><div class="col-md-4">
+	               		<input style="width:80%;" type="text" name="id" class="form-control" value=""/><br>           
+	          		</div></td>  			
+	  			</tr>			
 				<tr>
 					<td><label class="col-md-8 control-label">Judul</label></td>
 	          		<td><div class="col-md-4">
@@ -58,18 +64,23 @@
 	  			<tr >
 					<td><label class="col-md-8 control-label">Jenis Berita</label></td>
 	          		<td><div class="col-md-4">
-	               		<select class="form-control" id="sel1" name="tipe" ng-change='loadSub()'  ng-model="item">
-						    <option value="kegiatan"> Kegiatan </option>
-						    <option value="beritadinas"> Berita Dinas </option>
-						    <option value="umum"> Umum </option>
-						    <option value="iberkala" > Informasi Berkala </option>
-						    <option value="irutin" > Informasi Setiap Saat </option>
-						    <option value="imendadak" > Informasi Serta Merta </option>					    
+	               		<select class="form-control" id="sel1" name="tipe" ng-change='loadMenu()'  ng-model="item">
+						    <option value="1"> Kegiatan </option>
+						    <option value="2"> Berita Dinas </option>
+						    <option value="3"> Umum </option>
+						    <option value="4" > Informasi Berkala </option>
+						    <option value="5" > Informasi Setiap Saat </option>
+						    <option value="6" > Informasi Serta Merta </option>					    
 						  </select>           
+	          		</div>
+	          		<div class="col-md-4" ng-show="menu">
+		          		<select class="form-control" ng-model='menu' name='menu' ng-change='loadSubMenu()'>
+		          			<option ng-repeat="menu in result" value="{{menu.id}}">{{menu.name}}</option>
+		          		</select>
 	          		</div>
 	          		<div class="col-md-4" ng-show="submenu">
 		          		<select class="form-control" ng-model='submenu' name='submenu'>
-		          			<option ng-repeat="menu in result" value="{{menu.id}}">{{menu.name}}</option>
+		          			<option ng-repeat="submenu in res" value="{{submenu.id}}">{{submenu.name}}</option>
 		          		</select>
 	          		</div>
 	          		</td>  			
@@ -80,9 +91,7 @@
 			  		<td style="height: 400 px;">				  		  
 				  		<div >
 						  	<div class="dz-message dz-preview" style="width: 100%;  border: 2px; border-style: dashed; border-color: #808080;" data-dz-message><span>Drop <i>file</i> di sini atau.. </span></div>
-						    <input name="file" type="file" multiple />
-						    
-						    
+						    		    
 						  </div>
 					</td>
 				</tr>
@@ -110,29 +119,43 @@
 		Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
 
 				  // The configuration we've talked about above
-				  url						: '<?=base_url()?>index.php/c_konten/save',
+				  url						: '<?=base_url()?>index.php/c_konten/postAttachment/<?=$token?>',
 				  autoProcessQueue	: true,
 				  uploadMultiple		: false,
 				  parallelUploads		: 100,
 				  maxFiles				: 100,
 				  acceptedFiles		: 'application/pdf',
+				  addRemoveLinks		: true,
+				  removedfile			: function(file) {
+					  $.ajax({
+		                    url			: "<?=base_url()?>index.php/c_konten/removeAttachment",
+		                    data		: { tokenId: '<?=$token?>'},
+		                    type		: 'POST',
+		                    success	: function (data) {
+		                        if (data.NotificationType === "Error") {
+		                           // toastr.error(data.Message);
+		                        } else {
+		                            //toastr.success(data.Message);                          
+		                        }
+		                    },
+		                    error: function (data) {
+		                        //toastr.error(data.Message);
+		                    }
+		                }) ;
+				      var _ref;
+				      return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+				      
+				    },
+				  
 
 				  // The setting up of the dropzone
 				  init: function() {
 				    var myDropzone = this;
-
-				    // First change the button to actually tell Dropzone to process the queue.
-				    ///console.log(this);
-				     this.element.querySelector("button[type=submit]").addEventListener("click", function(e) {
-				      // Make sure that the form isn't actually being sent.
-				      e.preventDefault();
-				      e.stopPropagation();
-				      myDropzone.processQueue();
-				    });
-				  }
+				  
 				}
+		}
 		
-			app.controller('formController', function(loadChildren, $scope) {		
+			app.controller('formController', function(loadMenu, loadSubMenu, $scope) {		
 				 $scope.dropzoneConfig = {
 						    'options': { // passed into the Dropzone constructor
 						      'url': '<?=base_url()?>index.php/c_konten/save'
@@ -145,57 +168,80 @@
 						    }
 						  };	
 				$scope.result 		= [];
-				$scope.loadSub 	= function(){
+				$scope.loadMenu 	= function(){
 						var jenis = $scope.item;
 						//alert(jenis);
-						 if(jenis == 'iberkala'){
-								loadChildren.getChildren(1).then(function(response){
+						 if(jenis == '4'){
+								loadMenu.getMenu(1).then(function(response){
 							        $scope.result = response.data;
 							    }, function(error){
 							        console.log('opsssss' + error);
 							    });
+								$scope.menu 		= true;
 								$scope.submenu 	= true;
 								$scope.file			= true;
 								$scope.editor 		= true;
 							 }
-						 else if(jenis == 'irutin'){
+						 else if(jenis == '5'){
 							 //console.log('informasi rutin');
-							 loadChildren.getChildren(2).then(function(response){
+							 loadMenu.getMenu(2).then(function(response){
 							        $scope.result = response.data;
 							    }, function(error){
 							        console.log('opsssss' + error);
 							    });
-								 $scope.submenu = true;
+								 $scope.menu 		= true;
+								 $scope.submenu	= true;
 								 $scope.file 		= true;
 								 $scope.editor 	= true;
 							 }
-						 else if(jenis == 'imendadak'){
+						 else if(jenis == '6'){
 							 //console.log('informasi serta merta');
-							 loadChildren.getChildren(3).then(function(response){
+							 loadMenu.getMenu(3).then(function(response){
 							        $scope.result = response.data;
 							    }, function(error){
 							        console.log('opsssss' + error);
 							    });
-								 $scope.submenu = true;
+								 $scope.menu 		= true;
+								 $scope.submenu	= true;
 								 $scope.file 		= true;
 								 $scope.editor 	= true;
 							 }
 						 else{
 							 //alert(jenis);
 							 //console.log(jenis);
+							 $scope.menu 		= false;
 							 $scope.submenu = false;
 							 $scope.file 		= false;
 							 $scope.editor 	= false; 
 							 
 						}
 					};
+
+					$scope.loadSubMenu	=	function(){
+							
+							var menu = $scope.menu;
+							//alert(menu);
+							loadSubMenu.getSubMenu(menu).then(function(response){
+						        $scope.res = response.data;
+						    }, function(error){
+						        console.log('opsssss' + error);
+						    });
+						}
 					
-			}).factory('loadChildren', function($http){
-					 var getChildren =  function (jenis){
-						 	return $http.get('<?=base_url()?>index.php/c_informasi/getChildren/' + jenis);						 
+			}).factory('loadMenu', function($http){
+					 var getMenu =  function (jenis){
+						 	return $http.get('<?=base_url()?>index.php/c_menu/getMenu/' + jenis);						 
 						 };
-						 return {getChildren: getChildren};
+						 return {getMenu: getMenu};
+						 
 					 
+				}).factory('loadSubMenu', function($http){
+					//alert('Entering sub menu factory');
+					var getSubMenu = function (menu)
+					{
+						return $http.get('<?=base_url()?>index.php/c_menu/getSubMenu/' + menu);
+					}
+					return {getSubMenu: getSubMenu};
 				});			
 			//angular.module('ppid', ['dropzone']);
 			app.controller('editorcontrol', function($scope) {
