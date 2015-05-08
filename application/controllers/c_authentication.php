@@ -4,9 +4,7 @@ class c_authentication extends public_abstraction {
 
 	public function __construct() {
 		parent:: __construct();
-		$this->load->model('m_authentication');
-		$this->load->model('m_artikel');
-		
+		$this->load->model(array('m_artikel', 'm_authentication'));		
 		$this->load->library('pbkdf2');
 		
 		$config['iterations'] 	= 500;
