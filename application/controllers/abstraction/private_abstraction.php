@@ -5,7 +5,7 @@ class private_abstraction extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		//$this->load->model('m_artikel');
+		$this->load->model('m_artikel');
 		$this->loginCheck();
 		//echo "private abstraction construct";
 	}
@@ -44,7 +44,35 @@ class private_abstraction extends CI_Controller {
 			redirect ("c_authentication");
 		}
 		else{
-			
+			if(!$this->uri->segment(1))
+			{
+				$data = array();
+				
+				$page['header']	= 'header';
+				$page['left']		= '';
+				$page['right']		= 'menukanan';
+				$page['footer']		= 'footer';
+				$page['body']		= 'artikel/artikel';
+				$page['page']		= 'index';
+				
+				$artikel 				= $this->m_artikel->read();
+				
+				$i=0;
+				foreach ($artikel->result_array() as $row)
+				{
+					$data['content'][$i]['artikelid']	= $row['artikelid'];
+					$data['content'][$i]['judul'] 		= $row['judul'];
+					$data['content'][$i]['isi'] 			= $row['isi'];
+						
+					$i++;
+				}
+				$data['total']		= $artikel->num_rows();				
+				
+				$this->loadPage(array_merge($page, $data));
+			}
+			else{
+				
+			}
 		}
 	}
 	

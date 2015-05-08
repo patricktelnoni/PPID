@@ -13,7 +13,8 @@ class m_artikel extends CI_Model implements i_crud{
 	}
 	
 	public function update($data){
-		$this->db->insert('artikel', $data);
+		$this->db->where('artikelid', $this->input->post('id'));
+		$this->db->update('artikel', $data);
 	}
 
 	public function read(){
@@ -26,11 +27,8 @@ class m_artikel extends CI_Model implements i_crud{
 		return $sql; 
 	}
 	
-	public function delete(){
-		/* $sql = "DELETE FROM some_table WHERE id = ? ";
-		$this->db->query($sql, array(3, 'live', 'Rick')); */
-		
-		$query = $this->db->delete('artikel', array('id' => $id));
+	public function delete(){		
+		$query = $this->db->delete('artikel', array('artikelid' => $this->uri->segment(3)));
 	}
 	
 }

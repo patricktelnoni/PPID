@@ -48,7 +48,8 @@ class c_konten extends private_abstraction {
 		$data = array(
 				'penulis'	=> $this->session->userdata('username'),
 				'isi'			=> $this->input->post('isi'),
-				'judul'		=> $this->input->post('judul')
+				'judul'		=> $this->input->post('judul'),
+				'jenis'		=> $this->input->post('jenis')
 		);
 		if($tipe == '1' OR $tipe == '2' OR $tipe == '3')
 		{			
@@ -91,5 +92,11 @@ class c_konten extends private_abstraction {
 		$artikel['content'] = $this->m_artikel->read();
 		
 		parent::loadPage(array_merge($page, $artikel));
+	}
+	
+	public function delete()
+	{
+		$this->m_artikel->delete();
+		redirect('c_artikel/listArtikel');
 	}
 }

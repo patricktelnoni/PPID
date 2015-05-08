@@ -81,4 +81,5 @@ class c_authentication extends public_abstraction {
 		parent::loadPage(array_merge($page, $data));
 		
 	}
+	
 }

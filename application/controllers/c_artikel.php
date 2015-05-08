@@ -90,5 +90,51 @@ class c_artikel extends private_abstraction{
 		
 		parent::loadPage(array_merge($page, $artikel));
 	}
+
+	public function listArtikel(){
+		$data = array();
+		
+		$page['header']	= 'header';
+		$page['left']	= '';
+		$page['right']	= 'menukanan';
+		$page['footer']	= 'footer';
+		$page['body']	= '/artikel/listartikel';
+		$page['page']	= 'index';
+	
+		$artikel = $this->m_artikel->read();
+	
+		//echo "artikel";
+		//print_r($artikel);
+		$i=0;
+		foreach ($artikel->result_array() as $row)
+		{
+			$data['content'][$i]['artikelid']	= $row['artikelid'];
+			$data['content'][$i]['author']	= $row['penulis'];
+			$data['content'][$i]['judul'] 		= $row['judul'];
+			$data['content'][$i]['isi'] 		= $row['isi'];
+	
+			$i++;
+		}
+		$data['total']		= $artikel->num_rows();
+		//print_r($data);
+	
+		parent::loadPage(array_merge($page, $data));
+	}
+	
+	public function editArticle()
+	{		
+		$data = array();
+		
+		$page['header']	= 'header';
+		$page['left']	= '';
+		$page['right']	= 'menukanan';
+		$page['footer']	= 'footer';
+		$page['body']	= '/artikel/editarticle';
+		$page['page']	= 'index';		
+		
+		$artikel['content'] = $this->m_artikel->read();
+		
+		parent::loadPage(array_merge($page, $artikel));
+	}
 	
 }

@@ -43,12 +43,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">PPID Bontang</a>
+              <a class="navbar-brand" href="<?=base_url()?>">PPID Bontang</a>
             </div>          
         </div>
         <div id="navbar" class="navbar-collapse collapse" >
         	<ul class="nav navbar-nav" ng-controller='checkActive'>
-                <li ng-class="{ active: isActive('beranda')}"><a href="#">Beranda</a></li>
+                <li ng-class="{ active: isActive('beranda')}"><a href="<?=base_url()?>">Beranda</a></li>
                 <li ng-class="{ active: isActive('informasi')}"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 	Informasi <span class="caret"></span></a>
                 	<ul class="dropdown-menu" role="menu">
@@ -97,6 +97,7 @@
 			}
           else {?>
           <div class="navbar-form navbar-right">
+          <button class="btn btn-info" onclick="window.location='<?=base_url()?>index.php/c_artikel/listArtikel'">Manajemen Artikel</button>
           	<button class="btn btn-primary" onclick="window.location='<?=base_url()?>index.php/c_artikel/createarticle'">Buat Artikel</button>
           	<button class="btn btn-success" onclick="window.location='<?=base_url()?>index.php/c_authentication/logout'">Log Out</button>
           </div>
