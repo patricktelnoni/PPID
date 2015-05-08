@@ -21,7 +21,7 @@
           <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>{{row.title}}</h1>
+              <h1><a href="<?=base_url().'index.php/c_artikel/read/{{row.id}}'?>">{{row.title}}</a></h1>
               <p>{{row.content}}.</p>
               
             </div>
