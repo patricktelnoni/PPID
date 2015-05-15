@@ -20,10 +20,11 @@ class m_artikel extends CI_Model implements i_crud{
 	public function read(){
 		/* $sql = "SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?";
 		$this->db->query($sql, array(3, 'live', 'Rick')); */
-		$artikelid = $this->uri->segment(3) != ''? $this->uri->segment(3): '';		
+		$artikelid = $this->uri->segment(4) != ''? $this->uri->segment(4): '';		
 		
 		$sql = $artikelid != '' ? $this->db->get_where('artikel', array('artikelid' => $artikelid)) : $this->db->get('artikel');
 				
+		//print_r($sql);
 		return $sql; 
 	}
 	

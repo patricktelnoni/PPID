@@ -47,7 +47,7 @@
 						 $i=0; 
 						foreach($content as $key )
 						{ ?>
-						 {title: '<?=$key['judul']?>' , content: '<?=$key['isi']?>', id: <?=$key['artikelid']?>}
+						 {title: '<?=$key['judul']?>' , content: '<?=strip_tags($key['isi'])?>', id: <?=$key['artikelid']?>}
 						 <?php					 
 								 if($i != $total-1)
 								 	{echo ", \n";}					 

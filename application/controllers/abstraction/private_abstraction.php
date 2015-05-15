@@ -79,8 +79,7 @@ class private_abstraction extends CI_Controller {
 	public function loadPage($page=array())
 	{		
 		foreach ($page as $val => $key)
-		{
-			
+		{			
 			$load[$val] = $key;
 		}			
 		$mainpage = $page['page'];		
