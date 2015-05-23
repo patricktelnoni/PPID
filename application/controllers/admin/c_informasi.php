@@ -101,6 +101,19 @@ class c_informasi extends c_konten{
 		redirect('c_informasi/listArtikel');
 	}
 
-	
+	public function add()
+	{
+		$page['body']		= 'informasi/addinformasi';
+		$page['header']	= 'header';
+		$page['left']		= '';
+		$page['right']		= 'menukanan';
+		$page['footer']		= 'footer';
+		
+		$page['page']		= 'index';
+		
+		$data['token']		= random_string('alnum', 30);
+		
+		parent::loadPage(array_merge($page, $data));
+	}
 	
 }

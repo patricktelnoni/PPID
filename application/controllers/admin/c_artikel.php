@@ -94,6 +94,19 @@ class c_artikel extends c_konten{
 		redirect('c_artikel/listArtikel');
 	}
 
-	
+	public function add()
+	{
+		$page['body']		= 'artikel/addarticle';
+		$page['header']	= 'header';
+		$page['left']		= '';
+		$page['right']		= 'menukanan';
+		$page['footer']		= 'footer';
+		
+		$page['page']		= 'index';
+		
+		$data['token']		= random_string('alnum', 30);
+		
+		parent::loadPage(array_merge($page, $data));
+	}
 	
 }

@@ -79,22 +79,10 @@ class c_konten extends private_abstraction {
 	{
 	
 	}
-	
-	
-	
+		
 	public function add()
 	{
-		$page['header']	= 'header';
-		$page['left']		= '';
-		$page['right']		= 'menukanan';
-		$page['footer']		= 'footer';
-		$page['body']		= 'artikel/createarticle';
-		$page['page']		= 'index';
-	
-		$data['token']		= random_string('alnum', 30);
-	
-		parent::loadPage(array_merge($page, $data));
-	
+			
 	}	
 		
 	
