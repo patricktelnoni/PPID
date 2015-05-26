@@ -30,6 +30,22 @@ class m_feedback extends CI_Model implements i_crud{
 		//print_r($sql)
 	}
 	
+	public function countfeedback()
+	{
+		return $this->db->count_all('feedback');
+	}
+	public function listfeedbackreply()
+	{	
+		$offset 		= $this->uri->segment(3)*5;
+		$limit			= $offset - 5;
+		
+		$this->db->select('feedback.feedbackid, nama, pesan, reply');
+		$this->db->from('feedback');
+		$this->db->join('reply', 'feedback.feedbackid=reply.feedbackid');
+		$this->db->limit($offset, $limit);
+		
+		return $this->db->get();
+	}
 	public function delete(){		
 		$query = $this->db->delete('feedback', array('feedbackid' => $this->uri->segment(3)));
 	}

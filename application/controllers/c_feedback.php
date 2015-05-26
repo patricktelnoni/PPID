@@ -5,7 +5,6 @@ class c_feedback extends public_abstraction{
 	
 	private $pa;
 	
-	
 	public function __construct() {
 		
 		parent:: __construct();		
@@ -51,7 +50,8 @@ class c_feedback extends public_abstraction{
 			$data = array(
 					'nama'	=> $this->input->post('nama'),
 					'email'		=> $this->input->post('email'),
-					'pesan'	=> $this->input->post('pesan')
+					'pesan'	=> $this->input->post('pesan'),
+					'time'		=> "DATE(NOW())"
 			);
 			if($this->input->post('id') == '')
 				$this->m_feedback->create($data);
@@ -78,11 +78,27 @@ class c_feedback extends public_abstraction{
 		$page['body']		= 'feedback/list_feedbackreply';
 		$page['page']		= 'index';
 		
-		parent::loadPage($data);
+		parent::loadPage($page);
 	}
 	
 	public function listreplyrest()
 	{
+		$i=0;
+		$data = array();
 		
+		$numrow 	= $this->m_feedback->countfeedback();
+		$feedback	= $this->m_feedback->listfeedbackreply();		
+		
+		foreach($feedback->result_array() as $res)
+		{
+			$data[$i]['feedbackid']	= $res['feedbackid'];
+			$data[$i]['nama'] 			= $res['nama'];
+			$data[$i]['pesan'] 		= $res['pesan'];
+			$data[$i]['reply']			= $res['reply'];
+			$i++;
+		}
+		$result = array('num_results' 	=> $numrow,
+							  'content'		=> $data);
+		echo json_encode($result);
 	}
 }

@@ -8,7 +8,7 @@
 
 <script type="text/javascript" src="<?=base_url()?>angular/angular.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/app.js"></script>
-	
+<script type="text/javascript" src="<?=base_url()?>bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
 </head>
 
 <body ng-app="ppid">
