@@ -6,24 +6,22 @@
 
 	
 	app.controller('listFeedback', function($scope, $http) {		
-		//$scope.url 				= "<?=base_url()?>index.php/c_feedback/listreplyrest/"+$scope.currentPage;
+		$scope.url 				= "<?=base_url()?>index.php/c_feedback/listreplyrest/";
         $scope.items			= [];
-        
-        fetch(1);
+                
+        fetch(1);        
         
         function fetch(page){
-	        	$http.get("<?=base_url()?>index.php/c_feedback/listreplyrest/"+page).then(function(response) {
+	        	$http.get($scope.url+page).then(function(response) {
 	            	//$scope.items			= response.data.content; 
 	            	$scope.totalItems 	= response.data.num_results;
 	            	angular.copy(response.data.content, $scope.items);              
 	          	});
             }
        	
-        $scope.pageChanged = function() {
-            //alert($scope.currentPage);
+        $scope.pageChanged = function() {            
             fetch($scope.currentPage);
-          };
-		 //$scope.jumlahdata=10;				
+          };		 
 	});		
 
 			 	
