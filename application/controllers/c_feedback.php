@@ -44,7 +44,6 @@ class c_feedback extends public_abstraction{
 	
 	public function save()
 	{		
-		
 		//print_r($_POST);
 		//print_r($this->session->userdata('captcha'));
 		if($this->session->userdata('captcha') == $this->input->post('captcha'))
@@ -62,14 +61,28 @@ class c_feedback extends public_abstraction{
 			$this->session->set_flashdata('flashError', '');
 			$this->session->set_flashdata('flashSuccess', 'Masukan anda berhasil kami simpan');
 			
-			redirect('c_artikel');
+			redirect('c_feedback');
 		}
 		else{
 			$this->session->set_flashdata('flashSuccess', '');
 			$this->session->set_flashdata('flashError', 'Kode keamanan (captcha) yang anda masukan salah.');
 			redirect('c_feedback');
-		}
+		}	
+	}
+	public function listreply()
+	{		
+		$page['header']	= 'header';
+		$page['left']		= '';
+		$page['right']		= 'menukanan';
+		$page['footer']		= 'footer';
+		$page['body']		= 'feedback/list_feedbackreply';
+		$page['page']		= 'index';
 		
+		parent::loadPage($data);
+	}
+	
+	public function listreplyrest()
+	{
 		
 	}
 }

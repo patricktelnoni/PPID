@@ -36,9 +36,10 @@ class c_feedback extends c_konten{
 		foreach ($artikel->result_array() as $row)
 		{
 			$data['content'][$i]['feedbackid']	= $row['feedbackid'];
-			$data['content'][$i]['nama']		= $row['nama'];
-			$data['content'][$i]['email'] 		= $row['email'];
-			$data['content'][$i]['pesan'] 		= $row['pesan'];
+			$data['content'][$i]['nama']			= $row['nama'];
+			$data['content'][$i]['email'] 			= $row['email'];
+			$data['content'][$i]['pesan'] 			= $row['pesan'];
+			$data['content'][$i]['dibalas'] 			= $row['dibalas'];
 	
 			$i++;
 		}
@@ -52,5 +53,6 @@ class c_feedback extends c_konten{
 	{
 		$this->m_feedback->delete();
 		redirect('c_feedback/listFeedback');
-	}
+	}	
+	
 }

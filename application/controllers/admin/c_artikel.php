@@ -64,10 +64,7 @@ class c_artikel extends c_konten{
 			if($this->input->post('id') == '')
 				$this->m_artikel->create($data);
 			else
-				$this->m_artikel->update($data);
-		
-		
-			
+				$this->m_artikel->update($data);	
 		
 		redirect('c_artikel');
 	}

@@ -13,8 +13,10 @@ class m_feedback extends CI_Model implements i_crud{
 	}
 	
 	public function update($data){
-		$this->db->where('feedbackid', $this->input->post('id'));
-		$this->db->update('feedback', $data);
+		//print_r($_POST);
+		$this->db->where('feedbackid', $this->input->post('feedbackid'));
+		return $this->db->update('feedback', $data);
+		//$this->db->get();
 	}
 
 	public function read(){
