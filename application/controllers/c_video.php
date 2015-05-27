@@ -11,65 +11,49 @@ class c_video extends public_abstraction{
 		parent:: __construct();		
 		$this->load->helper(array('url', 'captcha'));
 		$this->load->library('session');
-		$this->load->model('m_feedback');
+		$this->load->model('m_video');
 	}
 	public function index()
 	{		
-		$data = array();
-		
-		$vals = array(
-				'img_path' => 'captcha/',
-				'img_url' => base_url().'captcha/',
-		);
-		
-		/* Generate the captcha */
-		$data['captcha'] = create_captcha($vals);
-		
-		/* Store the captcha value (or 'word') in a session to retrieve later */
-		$this->session->set_userdata('captcha', $data['captcha']['word']);
-		
-		
-		/* Load the captcha view containing the form (located under the 'views' folder) */
-		//$this->load->view('captcha-view', $captcha);
+		$data = array();		
 		
 		$page['header']	= 'header';	
 		$page['left']		= '';
 		$page['right']		= 'menukanan';
 		$page['footer']		= 'footer';
-		$page['body']		= 'feedback/form_feedback';
+		$page['body']		= 'videos/displayvideo';
 		$page['page']		= 'index';
 				
-		parent::loadPage(array_merge($page, $data));
+		
+		parent::loadPage($page);
+	}
+
+	public function listvideo()
+	{
+		$video 				= $this->m_video->read();
+		
+		$i=0;
+		foreach ($video->result_array() as $row)
+		{
+			$data[$i]['artikelid']	= $row['videoid'];
+			$data[$i]['title'] 		= $row['title'];
+			$param 					= parse_url($row['link']);
+			//print_r($param['query']);
+			if(isset($param['query'])){
+				$param2 = explode("=", $param['query']);					
+				$data[$i]['link']	= isset($param['query']) ? $param['scheme'].'://'.$param['host']."/embed/".$param2[1] : $row['link'];
+			}
+			//echo  $param['host']."/embed/".$param['query']['v'];
+			$i++;
+		}
+		$total		= $video->num_rows();
+		
+		$result = array(	'total'		=>		$total,
+								'content'	=>		$data);
+		
+		echo json_encode($result);
+		
 	}
 	
-	public function save()
-	{		
-		
-		//print_r($_POST);
-		//print_r($this->session->userdata('captcha'));
-		if($this->session->userdata('captcha') == $this->input->post('captcha'))
-		{
-			$data = array(
-					'nama'	=> $this->input->post('nama'),
-					'email'		=> $this->input->post('email'),
-					'pesan'	=> $this->input->post('pesan')
-			);
-			if($this->input->post('id') == '')
-				$this->m_feedback->create($data);
-			else
-				$this->m_feedback->update($data);
-			
-			$this->session->set_flashdata('flashError', '');
-			$this->session->set_flashdata('flashSuccess', 'Masukan anda berhasil kami simpan');
-			
-			redirect('c_feedback');
-		}
-		else{
-			$this->session->set_flashdata('flashSuccess', '');
-			$this->session->set_flashdata('flashError', 'Kode keamanan (captcha) yang anda masukan salah.');
-			redirect('c_feedback');
-		}
-		
-		
-	}
+	
 }

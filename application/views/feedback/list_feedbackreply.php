@@ -46,6 +46,3 @@
 </article>
 <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="5"></pagination>
  </div>
-	<script type="text/javascript" src="<?=base_url()?>smart-table/smart-table.js"></script>
-<script type="text/javascript" src="<?=base_url()?>smart-table/lrInfiniteScrollPlugin.js"></script>
-

@@ -137,6 +137,7 @@
             </ul> 
          </li>
          <li ng-class="getTabClass(5)" ng-click="setActiveTab(5)"><a href="#polling" data-toggle="tab">Polling</a></li>
+         <li><a href="<?=base_url()."index.php/c_video"?>" data-toggle="tab">Gallery video</a></li>
       </ul>
       </div>
     </div>

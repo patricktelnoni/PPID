@@ -76,11 +76,11 @@
 }
 
 .dropdown-submenu.pull-left>.dropdown-menu {
-    right: 100%;
-    margin-left: 10px;
-    -webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px;
+    right							: 100%;
+    margin-left					: 10px;
+    -webkit-border-radius	: 6px 0 6px 6px;
+    -moz-border-radius		: 6px 0 6px 6px;
+    border-radius				: 6px 0 6px 6px;
 }
    </style>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -177,6 +177,14 @@
 			          		<ul class="dropdown-menu">
 								<li><a href="<?=base_url()?>index.php/admin/c_feedback/listcontent">Daftar Saran</a></li>
 								
+							</ul>
+			          </li>
+			         <li class="divider"></li>
+			          <li class="dropdown-submenu pull-left">
+			          		<a class="trigger left-caret" href="">Gallery Video</a>
+			          		<ul class="dropdown-menu">
+								<li><a href="<?=base_url()?>index.php/admin/c_video/listcontent">Daftar Video</a></li>
+								<li><a href="<?=base_url()?>index.php/admin/c_video/add">Tambah Video</a></li>
 							</ul>
 			          </li>
 			        </ul>
