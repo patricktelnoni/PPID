@@ -179,6 +179,14 @@
 								
 							</ul>
 			          </li>
+			           <li class="divider"></li>
+			          <li class="dropdown-submenu pull-left">
+			          		<a class="trigger left-caret" href="">Gallery foto</a>
+			          		<ul class="dropdown-menu">
+								<li><a href="<?=base_url()?>index.php/admin/c_foto/listcontent">Daftar foto</a></li>
+								<li><a href="<?=base_url()?>index.php/admin/c_foto/add">Tambah foto</a></li>
+							</ul>
+			          </li>
 			         <li class="divider"></li>
 			          <li class="dropdown-submenu pull-left">
 			          		<a class="trigger left-caret" href="">Gallery Video</a>

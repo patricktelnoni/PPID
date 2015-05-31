@@ -47,14 +47,9 @@
 				
 		<form ng-controller="formController"   method="post" id="myAwesomeDropzone" class="dropzone fallback dz-clickable"
 			enctype="multipart/form-data" accept-charset="utf-8" 
-			action="<?=base_url()?>index.php/c_konten/save/<?=$token?>" style="padding-top: 10%; width:100%;">
+			action="<?=base_url()?>index.php/admin/c_artikel/save" style="padding-top: 10%; width:100%;">
 			<table>
-				<tr>
-					<td><label class="col-md-8 control-label">Judul</label></td>
-	          		<td><div class="col-md-4">
-	               		<input style="width:80%;" type="text" name="id" class="form-control" value=""/><br>           
-	          		</div></td>  			
-	  			</tr>			
+						
 				<tr>
 					<td><label class="col-md-8 control-label">Judul</label></td>
 	          		<td><div class="col-md-4">
@@ -65,18 +60,26 @@
 					<td><label class="col-md-8 control-label">Jenis Berita</label></td>
 	          		<td>
 		          		<div class="col-md-4">
-		               		<select class="form-control" id="sel1" name="tipe" ng-change='loadMenu()'  ng-model="item">
+		               		<select class="form-control" id="sel1" name="tipe" ng-model="item">
 							    <option value="1"> Kegiatan </option>
 							    <option value="2"> Berita Dinas </option>
 							    <option value="3"> Umum </option>						   			    
 							  </select>           
 		          		</div>          		
 	          		</td>  			
+	  			</tr>	
+	  			<tr>
+					<td><label class="col-md-8 control-label">Gambar background</label></td>
+	          		<td><div class="col-md-4">
+	               		<input style="width:80%;" type="file" name="file" class="form-control" value=""/><br>           
+	          		</div></td>  			
 	  			</tr>		  			
-	  			<tr id="editor" ng-hide="editor">
+	  			<tr id="editor">
 	  				<td><label class="col-md-8 control-label">Isi</label></td>
 	  				<td>
-		  				<input type="file" name="preview">
+		  				<div ng-controller="editorcontrol" class="container app">		  		
+			  				<div text-angular="text-angular" name="isi" ng-model="htmlcontent" ></div>		  				
+		  				</div>
 	  				</td>
 	  			</tr>
 	  			<tr>  			
@@ -89,7 +92,7 @@
 		<script type="text/javascript">
 		
 		
-			app.controller('formController', function(loadMenu, loadSubMenu, $scope) {		
+			app.controller('formController', function($scope) {		
 				 $scope.dropzoneConfig = {
 						    'options': { // passed into the Dropzone constructor
 						      'url': '<?=base_url()?>index.php/c_konten/save'
@@ -105,7 +108,7 @@
 			});			
 			//angular.module('ppid', ['dropzone']);
 			app.controller('editorcontrol', function($scope) {
-				$scope.htmlcontent = 'Ketik isi berita di sini...';
+				$scope.htmlcontent = '<div align="left">Ketik isi berita di sini...</div>';
 			});	
   		</script>  		
   		

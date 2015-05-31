@@ -49,9 +49,7 @@ class m_informasi extends CI_Model implements i_crud{
 	public function getSubMenu($up = "")
 	{
 		$parent 	= (int)$this->uri->segment(3);						
-		$query 	= $up == "" ? $this->db->get_where('info', array('parent' => $parent)) :$this->db->get_where('info', array('parent' => $up));
-	
-		//print_r($query->result_array());
+		$query 	= $up == "" ? $this->db->get_where('info', array('parent' => $parent)) :$this->db->get_where('info', array('parent' => $up));	
 		
 		return $query;		
 	}
@@ -88,5 +86,35 @@ class m_informasi extends CI_Model implements i_crud{
 		$query = $this->db->get();
 		
 		return $query;
+	}
+	
+	public function postAttachment($path)
+	{
+		$token 	= $this->uri->segment(3);
+	
+		$konten	= $this->db->get_where('informasi', array('token' => $token));
+		if($konten->num_rows() >0){
+			$this->db->where('token', $token);
+			$this->db->update('informasi', array('file' => $path));
+		}
+		else{
+			$this->db->insert('informasi', array('token' => $token, 'file' => $path));
+		}
+	}
+	
+	public function removeAttachment()
+	{
+		$token 	= $this->input->post('token');
+		$konten	= $this->db->get_where('informasi', array('token' => $token));
+	
+		if($konten->num_rows() >0){
+			$this->db->where('token', $token);
+			$this->db->update('informasi', array('file' => ' '));
+		}
+		else{
+			$this->db->delete('informasi', array('token' => $token));
+		}
+	
+		return $konten;
 	}
 }

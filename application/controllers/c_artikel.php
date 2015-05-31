@@ -28,9 +28,10 @@ class c_artikel extends public_abstraction{
 		$i=0;		
 	 	foreach ($artikel->result_array() as $row)
 		{	
-			$data['content'][$i]['artikelid']	= $row['artikelid'];
-			$data['content'][$i]['judul'] 		= $row['judul'];
-			$data['content'][$i]['isi'] 			= $row['isi'];
+			$data['content'][$i]['artikelid']		= $row['artikelid'];
+			$data['content'][$i]['judul'] 			= $row['judul'];
+			$data['content'][$i]['isi'] 				= $row['isi'];
+			$data['content'][$i]['background'] 	= base_url().$row['background'];
 			
 			$i++;
 		} 

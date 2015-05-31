@@ -19,11 +19,11 @@ class c_konten extends private_abstraction {
 		
 	}	
 	
-	public function postAttachment()
+	public function postAttachment($tipe="")
 	{	
 		if(isset($_FILES)){			
-			$path = './upload/'.$_FILES['file']['name'];
-			if (file_exists("./upload/" . $_FILES['file']['name']."/"))
+			$path = './upload/'.$tipe.'/'.$_FILES['file']['name'];
+			if (file_exists("./upload/".$tipe."/" . $_FILES['file']['name']."/"))
 			{
 				echo "{success:false, errors:{reason: 'File untuk nama yang sama sudah diupload.' }}";
 			}
@@ -31,9 +31,13 @@ class c_konten extends private_abstraction {
 			{
 				if(move_uploaded_file($_FILES["file"]["tmp_name"], "./upload/" . $_FILES['file']['name']))
 				{				
-					$this->m_konten->postAttachment($path);
+					//$this->m_konten->postAttachment($path);
+					return $path;
 				}
 			}			
+		}
+		else{
+			return "";
 		}				
 	}
 	public function removeAttachment()

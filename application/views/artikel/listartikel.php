@@ -48,8 +48,8 @@ class="table table-striped table-condensed table-bordered"
             <td>{{$index+1}}</td>
             <td>{{row.title}}</td>            
             <td>{{row.author}}</td>            
-            <td><a href="<?=base_url()."index.php/c_artikel/editArticle/{{row.id}}"?>" class="btn btn-warning" role="button">Edit</a> |
-            		<a href="<?=base_url()."index.php/c_konten/delete/{{row.id}}"?>" class="btn btn-danger" role="button">Delete</a></td>
+            <td><a href="<?=base_url()."index.php/admin/c_artikel/edit/{{row.id}}"?>" class="btn btn-warning" role="button">Edit</a> |
+            		<a href="<?=base_url()."index.php/admin/c_konten/delete/{{row.id}}"?>" class="btn btn-danger" role="button">Delete</a></td>
         </tr>        
     </tbody>
     <tfoot>

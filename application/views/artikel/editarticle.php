@@ -49,12 +49,12 @@
 				
 		<form method="post" id="myAwesomeDropzone" class="dropzone fallback dz-clickable"
 			enctype="multipart/form-data" accept-charset="utf-8" 
-			action="<?=base_url()?>index.php/c_konten/save" style="padding-top: 10%; width:100%;">
+			action="<?=base_url()?>index.php/admin/c_artikel/save" style="padding-top: 10%; width:100%;">
 			<table>
 				<tr style="visibility: hidden;">
 					<td><label class="col-md-8 control-label">Judul</label></td>
 	          		<td><div class="col-md-4">
-	               		<input style="width:80%;" type="text" name="id" class="form-control" value="<?=$row->artikelid?>"/><br>           
+	               		<input style="width:80%;" type="text" name="artikelid" class="form-control" value="<?=$row->artikelid?>"/><br>           
 	          		</div></td>  			
 	  			</tr>			
 				<tr>
@@ -75,7 +75,12 @@
 	          		
 	          		</td>  			
 	  			</tr>
-	  			
+	  			<tr>
+					<td><label class="col-md-8 control-label">Gambar background</label></td>
+	          		<td><div class="col-md-4">
+	               		<input style="width:80%;" type="file" name="background" class="form-control" value=""/><br>           
+	          		</div></td>  			
+	  			</tr>	
 	  			<tr id="editor">
 	  				<td><label class="col-md-8 control-label">Isi</label></td>
 	  				<td>

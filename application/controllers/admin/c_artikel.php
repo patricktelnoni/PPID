@@ -9,7 +9,7 @@ class c_artikel extends c_konten{
 		parent:: __construct();
 		
 		//$private->loginCheck();
-		$this->load->model(array('m_informasi', 'm_artikel', 'm_konten'));
+		$this->load->model(array('m_artikel', 'm_konten'));
 		$this->load->helper('string');
 	}
 	public function index()
@@ -50,22 +50,25 @@ class c_artikel extends c_konten{
 			parent::loadPage($page);
 	}
 	
+	
 	public function save()
-	{
-		$tipe = $this->input->post('tipe');
+	{		
+		//print_r($_FILES);	
+		$path = parent::postAttachment('artikel');	
 		
 		$data = array(
-				'penulis'	=> $this->session->userdata('username'),
-				'isi'			=> $this->input->post('isi'),
-				'judul'		=> $this->input->post('judul'),
-				'jenis'		=> $this->input->post('jenis')
-		);
-		
-			if($this->input->post('id') == '')
-				$this->m_artikel->create($data);
-			else
-				$this->m_artikel->update($data);	
-		
+							'penulis'			=> $this->session->userdata('username'),
+							'isi'					=> strip_tags($this->input->post('isi')),
+							'judul'				=> $this->input->post('judul'),
+							'jenis'				=> $this->input->post('tipe'),
+							'background' 	=> $path
+					);
+					
+		if($this->input->post('artikelid') == '')
+			$this->m_artikel->create($data);
+		else
+			$this->m_artikel->update($data);		
+			
 		redirect('c_artikel');
 	}
 	

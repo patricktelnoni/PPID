@@ -49,6 +49,11 @@ class c_informasi extends c_konten{
 			parent::loadPage($page);
 	}
 	
+	public function attach(){
+		$path = parent::postAttachment('informasi');
+		$this->m_informasi->postAttachment($path);
+	}
+	
 	public function save()
 	{
 		$tipe = $this->input->post('tipe');

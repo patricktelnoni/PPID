@@ -3,7 +3,6 @@
 <link href="<?=base_url()?>bootstrap/carousel.css" rel="stylesheet">	
 <link href="<?=base_url()?>styles/sidenav.css" rel="stylesheet">
 			
-			
 	<div class="contentMain">		
 	<div class="slideshow">
 					
@@ -18,7 +17,7 @@
       </ol>
       <div class="carousel-inner" role="listbox"  >
         <div class="item" ng-class="{active:!$index}" ng-repeat="row in items">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+          <img src="{{row.background}}" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1><a href="<?=base_url().'index.php/c_artikel/read/{{row.id}}'?>">{{row.title}}</a></h1>
@@ -28,11 +27,11 @@
           </div>
         </div>       
       </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="opacity:.1;">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" style="opacity:.1;">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
@@ -47,7 +46,7 @@
 						 $i=0; 
 						foreach($content as $key )
 						{ ?>
-						 {title: '<?=$key['judul']?>' , content: '<?=strip_tags($key['isi'])?>', id: <?=$key['artikelid']?>}
+						 {title: '<?=$key['judul']?>' , content: '<?=strip_tags($key['isi'])?>', id: <?=$key['artikelid']?>, background:'<?=$key['background']?>'}
 						 <?php					 
 								 if($i != $total-1)
 								 	{echo ", \n";}					 

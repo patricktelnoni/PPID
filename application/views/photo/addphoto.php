@@ -29,56 +29,16 @@
 		<form ng-controller="formController"   method="post" id="myAwesomeDropzone" class="dropzone fallback dz-clickable"
 			enctype="multipart/form-data" accept-charset="utf-8" 
 			action="<?=base_url()?>index.php/c_konten/save/<?=$token?>" style="padding-top: 10%; width:100%;">
-			<table style="width:90%;">
+			<table style="width:90%;">					
 				<tr>
-					<td class="col-md-2 " style="width:10%;"><label class=" control-label">Judul</label></td>
-	          		<td class="col-md-8"><div >
-	               		<input style="width:60%;" type="text" name="id" class="form-control" value=""/><br>           
-	          		</div></td>  			
-	  			</tr>			
-				<tr>
-					<td class="col-md-2 "><label class="control-label">Judul</label></td>
+					<td class="col-md-2 "><label class="control-label">Album</label></td>
 	          		<td class="col-md-6"><div >
 	               		<input style="width:60%;" type="text" ng-model="name"  name="judul" class="form-control" value=""/><br>           
 	          		</div></td>  			
 	  			</tr>
-	  			<tr >
-					<td class="col-md-1"><label class="control-label">Jenis Informasi</label></td>
-	          		<td><div class="col-md-6">
-	               		<select class="form-control" id="sel1" name="tipe" ng-change='loadMenu()'  ng-model="item">						   
-						    <option value="4" > Informasi Berkala </option>
-						    <option value="5" > Informasi Setiap Saat </option>
-						    <option value="6" > Informasi Serta Merta </option>					    
-						  </select>           
-	          		</div>
-	          		
-	          		</td>  			
-	  			</tr>
-	  			<div class="clearboth"></div>
-	  			<tr >
-					<td class="col-md-2 "><label class="control-label">Menu</label></td>
-	          		<td>
-	          		<div class="col-md-6 ">
-		          		<select class="form-control" ng-model='menu' name='menu' ng-change='loadSubMenu()'>
-		          			<option ng-repeat="menu in result" value="{{menu.id}}">{{menu.name}}</option>
-		          		</select>
-	          		</div>
-	          		
-	          		</td>  			
-	  			</tr>
 	  			
-	  			<tr >
-					<td class="col-md-2 "><label class="control-label">SKPD</label></td>
-	          		<td>
-	          		<div class="col-md-6" >
-		          		<select class="form-control" ng-model='submenu' name='submenu'>
-		          			<option ng-repeat="submenu in res" value="{{submenu.id}}">{{submenu.name}}</option>
-		          		</select>
-	          		</div>
-	          		</td>  			
-	  			</tr>
 	  			<tr id="file">
-	  				<td class="col-md-2 "><label class=" control-label">Attachment</label></td>
+	  				<td class="col-md-2 "><label class=" control-label">Foto</label></td>
 			  		<td style="height: 400 px;">				  		  
 				  		<div >
 						  	<div class="dz-message dz-preview" style="width: 100%;  border: 2px; border-style: dashed; border-color: #808080;" data-dz-message><span>Drop <i>file</i> di sini atau Klikk </span></div>
@@ -103,14 +63,14 @@
 				  // The configuration we've talked about above
 				  url						: '<?=base_url()?>index.php/admin/c_informasi/attach/<?=$token?>',
 				  autoProcessQueue	: true,
-				  uploadMultiple		: false,
+				  uploadMultiple		: true,
 				  parallelUploads		: 100,
 				  maxFiles				: 100,
-				  acceptedFiles		: 'application/pdf',
+				  //acceptedFiles		: 'application/pdf',
 				  addRemoveLinks		: true,
 				  removedfile			: function(file) {
 					  $.ajax({
-		                    url			: "<?=base_url()?>index.php/admin/c_informasi/removeAttachment",
+		                    url			: "<?=base_url()?>index.php/admin/c_foto/removeAttachment",
 		                    data		: { tokenId: '<?=$token?>'},
 		                    type		: 'POST',
 		                    success	: function (data) {
