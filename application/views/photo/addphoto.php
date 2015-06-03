@@ -28,20 +28,23 @@
 				
 		<form ng-controller="formController"   method="post" id="myAwesomeDropzone" class="dropzone fallback dz-clickable"
 			enctype="multipart/form-data" accept-charset="utf-8" 
-			action="<?=base_url()?>index.php/c_konten/save/<?=$token?>" style="padding-top: 10%; width:100%;">
+			action="<?=base_url()?>index.php/admin/c_foto/save/<?=$token?>" style="padding-top: 10%; width:100%;">
 			<table style="width:90%;">					
 				<tr>
 					<td class="col-md-2 "><label class="control-label">Album</label></td>
 	          		<td class="col-md-6"><div >
-	               		<input style="width:60%;" type="text" ng-model="name"  name="judul" class="form-control" value=""/><br>           
+	               		<input style="width:60%;" type="text" ng-model="album"  name="album" class="form-control" value=""/><br>           
 	          		</div></td>  			
 	  			</tr>
 	  			
 	  			<tr id="file">
 	  				<td class="col-md-2 "><label class=" control-label">Foto</label></td>
-			  		<td style="height: 400 px;">				  		  
+			  		<td style="height: 400 px;">
+			  						  		  
 				  		<div >
-						  	<div class="dz-message dz-preview" style="width: 100%;  border: 2px; border-style: dashed; border-color: #808080;" data-dz-message><span>Drop <i>file</i> di sini atau Klikk </span></div>
+						  	<div class="dz-message dz-preview" style="width: 100%;  border: 2px; border-style: dashed; border-color: #808080;" data-dz-message>
+						  		<span>Drop <i>file</i> di sini atau Klikk </span>
+						  	</div>
 						    		    
 						  </div>
 					</td>
@@ -61,7 +64,7 @@
 		Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
 
 				  // The configuration we've talked about above
-				  url						: '<?=base_url()?>index.php/admin/c_informasi/attach/<?=$token?>',
+				  url						: '<?=base_url()?>index.php/admin/c_foto/attach/<?=$token?>',
 				  autoProcessQueue	: true,
 				  uploadMultiple		: true,
 				  parallelUploads		: 100,

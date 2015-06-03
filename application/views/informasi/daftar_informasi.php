@@ -4,17 +4,23 @@
 		<link href="<?=base_url()?>styles/sidenav.css" rel="stylesheet">
 <script type="text/javascript">
 	app.controller('listInformasi', function($scope) {
-		 $scope.items = [
-			<?php
-			 $i=0; 
-			foreach($content as $key )
-			{ ?>
-		 		{no:'<?=$i+1?>',title: '<?=$key['judul']?>' , content: '<?=$key['isi']?>', id: <?=$key['infoid']?>, link: '<?=$key['link']?>'}
-			 <?php					 
-				 if($i != $total-1)	{echo ", \n";}					 
-				$i++;						
-			}?>				 
-		];				
+		 $scope.url 				= "<?=base_url()?>index.php/service/c_informasi/listfoto/";
+		 $scope.items = [];
+		 function fetch(page){
+				$http.get($scope.url+page).then(function(response) {
+				           	//$scope.items			= response.data.content; 
+				           	$scope.totalItems 	= response.data.total;
+				           	angular.copy(response.data.content, $scope.items);              
+				          	});
+			}
+
+			$scope.openLightboxModal = function (index) {
+			    Lightbox.openModal($scope.items, index);
+			  };
+						       	
+			 $scope.pageChanged = function() {            
+				 fetch($scope.currentPage);
+			 };					
 	});				 	
  </script>			
 <div class="contentMain">	

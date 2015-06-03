@@ -20,25 +20,43 @@ class c_konten extends private_abstraction {
 	}	
 	
 	public function postAttachment($tipe="")
-	{	
-		if(isset($_FILES)){			
-			$path = './upload/'.$tipe.'/'.$_FILES['file']['name'];
-			if (file_exists("./upload/".$tipe."/" . $_FILES['file']['name']."/"))
-			{
-				echo "{success:false, errors:{reason: 'File untuk nama yang sama sudah diupload.' }}";
-			}
-			else
-			{
-				if(move_uploaded_file($_FILES["file"]["tmp_name"], "./upload/" . $_FILES['file']['name']))
-				{				
-					//$this->m_konten->postAttachment($path);
-					return $path;
+	{			
+		$this->load->library('upload');
+		$files = $_FILES;
+		$cpt = count($_FILES['file']['name']);
+		for($i=0; $i<$cpt; $i++)
+		{
+		
+				$_FILES['file']['name']			= $files['file']['name'][$i];
+				$_FILES['file']['type']				= $files['file']['type'][$i];
+				$_FILES['file']['tmp_name']		= $files['file']['tmp_name'][$i];
+				$_FILES['file']['error']				= $files['file']['error'][$i];
+				$_FILES['file']['size']				= $files['file']['size'][$i];
+		
+				$config['upload_path'] 		= './upload/'.$tipe;
+				$config['allowed_types'] 	= 'gif|jpg|png|JPEG|JPG|PNG|pdf';
+				$config['max_size']      		= '0';
+    			$config['overwrite']     		= FALSE;
+				$config['max_width'] 		= '0';
+				$config['max_height'] 		= '0';
+				
+				
+				$this->upload->initialize($config);
+				
+				if(!$this->upload->do_upload('file'))
+				{
+					echo $this->upload->display_errors();						
 				}
-			}			
-		}
-		else{
-			return "";
-		}				
+				else{
+					$fInfo = $this->upload->data();
+					
+					return $fInfo;
+				}
+		
+		
+		} 
+
+								
 	}
 	public function removeAttachment()
 	{

@@ -9,7 +9,7 @@ class m_foto extends CI_Model implements i_crud{
 	}
 	
 	public function create($data){
-		$this->db->insert('artikel', $data);
+		$this->db->insert('album', $data);
 	}
 	
 	public function update($data){
@@ -20,9 +20,9 @@ class m_foto extends CI_Model implements i_crud{
 	public function read(){
 		/* $sql = "SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?";
 		$this->db->query($sql, array(3, 'live', 'Rick')); */
-		$artikelid = $this->uri->segment(4) != ''? $this->uri->segment(4): '';		
+		$albumid = $this->uri->segment(4) != ''? $this->uri->segment(4): '';		
 		
-		$sql = $artikelid != '' ? $this->db->get_where('artikel', array('artikelid' => $artikelid)) : $this->db->get('artikel');
+		$sql = $albumid != '' ? $this->db->get_where('album', array('albumid' => $albumid)) : $this->db->get('album');
 				
 		//print_r($sql);
 		return $sql; 
@@ -32,4 +32,35 @@ class m_foto extends CI_Model implements i_crud{
 		$query = $this->db->delete('artikel', array('artikelid' => $this->uri->segment(3)));
 	}
 	
+	public function postAttachment($path, $thumbs)
+	{
+		$token 	= $this->uri->segment(4);		
+		
+		$this->db->insert('foto', array('token' => $token, 'path' => $path, 'thumbs' => $thumbs));
+		
+	}
+	
+	public function removeAttachment()
+	{
+		$token 	= $this->input->post('token');	
+		
+		$this->db->delete('informasi', array('token' => $token));
+		
+	
+		return $konten;
+	}
+	
+	public function getFoto($albumid)
+	{		
+		$sql = $this->db->get_where('foto', array('albumid' => $albumid));		
+	
+		return $sql;
+	}
+	
+	public function fetchalbum()
+	{
+		$sql = $this->db->get_where('foto', array('albumid' => $this->uri->segment(3)));
+		
+		return $sql;
+	}
 }

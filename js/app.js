@@ -1,8 +1,8 @@
 var menu = window.location.pathname.split("/");
 //alert(menu[4])
 if(menu[4] == 'add' || menu[4] == 'edit')
-	var app=angular.module('ppid', ['textAngular', 'ui.bootstrap']);
+	var app=angular.module('ppid', ['textAngular', 'ui.bootstrap', 'ngAnimate', 'bootstrapLightbox']);
 else if(menu[4] ==  'listcontent')
-	var app=angular.module('ppid', ['smart-table', 'ui.bootstrap']);
+	var app=angular.module('ppid', ['smart-table', 'ui.bootstrap', 'ngAnimate', 'bootstrapLightbox']);
 else
-	var app=angular.module('ppid', ['ui.bootstrap']);
+	var app=angular.module('ppid', ['ui.bootstrap', 'ngAnimate', 'bootstrapLightbox']);

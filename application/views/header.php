@@ -109,6 +109,7 @@
                 	</ul>
                 </li>
                 <li ng-class="{ active: isActive('form')}"><a href="<?=base_url()?>index.php/c_feedback/">Permintaan Data</a></li>
+                <li ng-class="{ active: isActive('form')}"><a href="<?=base_url()?>index.php/c_foto/">Gallery foto</a></li>
                 
                 
                 <!-- <li class="dropdown">
