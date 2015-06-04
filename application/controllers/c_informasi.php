@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once 'c_konten.php';
+//require_once 'c_konten.php';
 require_once '/abstraction/public_abstraction.php';
 class c_informasi extends public_abstraction{ 
 	
@@ -22,24 +22,9 @@ class c_informasi extends public_abstraction{
 		$page['right']		= 'menukanan';
 		$page['footer']		= 'footer';
 		$page['body']		= 'informasi/daftar_informasi';
-		$page['page']		= 'index';
-				
-		$artikel = $this->m_informasi->read();	
+		$page['page']		= 'index';		
 		
-		$i=0;		
-	 	foreach ($artikel->result_array() as $row)
-		{	
-			$data['content'][$i]['infoid']	= $row['infoid'];
-			$data['content'][$i]['judul'] 	= $row['judul'];
-			$data['content'][$i]['isi'] 		= $row['isi'];
-			$data['content'][$i]['link']		= base_url().$row['file'];
-			
-			$i++;
-		} 
-		$data['total']		= $artikel->num_rows();
-		//print_r($data);
-		
-		parent::loadPage(array_merge($page, $data));
+		parent::loadPage($page);
 	}	
 	
 	
@@ -98,26 +83,9 @@ class c_informasi extends public_abstraction{
 		$page['right']	= 'menukanan';
 		$page['footer']	= 'footer';
 		$page['body']	= 'informasi/informasi_rutin';
-		$page['page']	= 'index';
+		$page['page']	= 'index';		
 		
-		if($this->uri->segment(3))
-			$artikel = $this->m_informasi->readInformasi();
-		else 
-			$artikel = $this->m_informasi->readInformasi(2);
-		
-		$i=0;
-		foreach ($artikel->result_array() as $row)
-		{
-			$data['content'][$i]['infoid']	= $row['infoid'];
-			$data['content'][$i]['judul'] 	= $row['judul'];
-			$data['content'][$i]['isi'] 		= $row['isi'];
-			$data['content'][$i]['link']		= base_url().$row['file'];
-				
-			$i++;
-		}
-		$data['total']		= $artikel->num_rows();
-		
-		parent::loadPage(array_merge($page, $data));	
+		parent::loadPage($page);
 	
 	}
 	

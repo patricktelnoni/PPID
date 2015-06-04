@@ -3,20 +3,26 @@
 		 
 		<link href="<?=base_url()?>styles/sidenav.css" rel="stylesheet">
 <script type="text/javascript">
-	app.controller('listInformasi', function($scope) {
+	app.controller('listInformasi', function($scope, $http) {
 
-		$scope.jumlahdata=10;
-		 $scope.items = [
-			<?php
-			 $i=0; 
-			foreach($content as $key )
-			{ ?>
-		 		{no:'<?=$i+1?>',title: '<?=$key['judul']?>' , content: '<?=strip_tags($key['isi'])?>', id: <?=$key['infoid']?>, link: '<?=$key['link']?>'}
-			 <?php					 
-				 if($i != $total-1)	{echo ", \n";}					 
-				$i++;						
-			}?>				 
-		];				
+		//$scope.jumlahdata=10;
+		 $scope.url 			= "<?=base_url()?>index.php/service/admin/c_informasi/listcontent/";
+		 $scope.items 		= [];
+
+		 fetch(1);
+		 function fetch(page){
+				$http.get($scope.url+page).then(function(response) {
+				           	//$scope.items			= response.data.content; 
+				           	$scope.totalItems 	= response.data.total;
+				           	angular.copy(response.data.content, $scope.items);              
+				          	});
+			}
+
+			
+						       	
+		$scope.pageChanged = function() {            
+				 fetch($scope.currentPage);
+			 };				
 	});				 	
  </script>			
 <div class="contentMain" ng-controller="listInformasi">	
@@ -43,21 +49,22 @@ class="table table-striped table-condensed table-bordered"
 			</tr>
     <tbody >     
         <tr ng-repeat="row in items">
-            <td>{{row.no}}</td>
-            <td>{{row.title}}</td>
+            <td>{{$index+1}}</td>
+            <td>{{row.judul}}</td>
             <td>Softcopy</td>
-            <td>{{row.content}}</td>
+            <td>{{row.judul}}</td>
             <td><a href={{row.link}}> Download</a></td>
-            <td>{{row.title}}</td>
+            <td>{{row.judul}}</td>
             <td><a href="<?=base_url()."index.php/c_artikel/editArticle/{{row.id}}"?>" class="btn btn-warning" role="button">Edit</a> |
             		<a href="<?=base_url()."index.php/c_konten/delete/{{row.id}}"?>" class="btn btn-danger" role="button">Delete</a></td>
         </tr>
         
     </tbody>
-    <tfoot>
+     <tfoot>
 			<tr>
 				<td colspan="7" class="text-center">
-					<div st-pagination="" st-items-by-page="5" st-displayed-pages=""></div>
+					<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="10"></pagination>
+					<!-- <div st-pagination="" st-items-by-page="10" st-displayed-pages=""></div> -->
 				</td>
 			</tr>
 		</tfoot>

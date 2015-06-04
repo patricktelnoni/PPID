@@ -30,8 +30,13 @@ class m_informasi extends CI_Model implements i_crud{
 	}
 	
 	public function read(){		
-		$query = $this->db->get('informasi');
-		return $query;
+		$offset 				=	$this->uri->segment(5) ? ($this->uri->segment(5) -1)*10 : ($this->uri->segment(4) -1)*10;
+		$limit					=	10 ;
+		//echo $offset.'-'.$limit;
+		$result['total']		=	$this->db->get('informasi');
+		$result['query']	=	$this->db->get('informasi', $limit, $offset);
+		
+		return $result;
 	}
 	
 	public function delete(){		
@@ -40,7 +45,7 @@ class m_informasi extends CI_Model implements i_crud{
 	
 	public function getMenu()
 	{			
-		$jenis 	= (int)$this->uri->segment(3);				
+		$jenis 	= (int)$this->uri->segment(4);				
 		$query 	= $this->db->get_where('info', array('jenis' => $jenis));				
 		
 		return $query;
@@ -48,7 +53,7 @@ class m_informasi extends CI_Model implements i_crud{
 	
 	public function getSubMenu($up = "")
 	{
-		$parent 	= (int)$this->uri->segment(3);						
+		$parent 	= $this->uri->segment(4);						
 		$query 	= $up == "" ? $this->db->get_where('info', array('parent' => $parent)) :$this->db->get_where('info', array('parent' => $up));	
 		
 		return $query;		
@@ -61,31 +66,43 @@ class m_informasi extends CI_Model implements i_crud{
 		return $query->row()->parent;
 	}
 	
-	public function readInformasi($jenis = "")
+	public function readInfo($jenis = "", $lim)
 	{
-		$parent = $this->uri->segment(3)? $this->getParent($this->uri->segment(3)): "";
+		$parent = $this->uri->segment(4)? $this->getParent($this->uri->segment(4)): "";
 		if($jenis != ""){
 			$idmin	= $this->db->select_min('idtipe', 'idmin')->from('info')->where('jenis', $jenis)->get()->row()->idmin;
 			$idmax	= $this->db->select_max('idtipe', 'idmax')->from('info')->where('jenis', $jenis)->get()->row()->idmax;
-		}
+		}		
+		 $this->db->from('informasi');
+		 $this->db->join('info', 'info.idtipe = informasi.tipe_info'); 
 		
-		$this->db->select('*');
-		$this->db->from('informasi');
-		$this->db->join('info', 'info.idtipe = informasi.tipe_info');
-		
-		if($jenis != ""){			
-			$this->db->where('info.jenis', $jenis);			
-			$this->db->or_where('info.parent >=', $idmin);
-			$this->db->where('info.parent <=', $idmax);		
-					
+		if($jenis != ""){		
+			 $this->db->where('info.jenis', $jenis);
+			 $this->db->or_where('info.parent >=', $idmin);
+			 $this->db->where('info.parent <=', $idmax);				
 		}
 		else{		
-			$this->db->where('info.parent', $parent);		
+			$this->db->where('info.parent', $parent);
 		}
+		
+		if($lim)
+		{
+			$offset 				=	$this->uri->segment(5) ? ($this->uri->segment(5) -1)*5 : 0;
+			$limit					=	5 ;
+			
+			$this->db->limit($limit, $offset);		}
 		
 		$query = $this->db->get();
 		
 		return $query;
+	}
+	
+	public function readInformasi($jenis = "")
+	{		
+		$result['total']		=	$this->readInfo($jenis, false);		
+		$result['query']	=	$this->readInfo($jenis, true);
+		
+		return $result;
 	}
 	
 	public function postAttachment($path)

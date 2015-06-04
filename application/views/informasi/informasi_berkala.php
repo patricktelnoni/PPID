@@ -8,7 +8,7 @@
 					<script type="text/javascript">
 
 					app.controller('listInformasi', function(refreshContent, $scope) {
-						$scope.menu = <?php echo file_get_contents(base_url().'index.php/c_menu/getSideMenu/1'); ?>;
+						$scope.menu = <?php echo file_get_contents(base_url().'index.php/service/c_menu/getSideMenu/1'); ?>;
 						$scope.reloadContent = function(detil){
 							refreshContent.getContent(detil).then(function(response){
 						        $scope.items = response.data;
@@ -18,20 +18,10 @@
 							//alert(detil);
 							};
 						
-						 $scope.items = [
-							<?php
-							 $i=0; 
-							foreach($content as $key )
-							{ ?>
-						 		{judul: '<?=$key['judul']?>' , isi: '<?=$key['isi']?>', id: <?=$key['infoid']?>, link: '<?=$key['link']?>'}
-							 <?php					 
-								 if($i != $total-1)	{echo ", \n";}					 
-								$i++;						
-							}?>				 
-						];				
+						 $scope.items = [];				
 					}).factory('refreshContent', function($http){
 						var getContent =  function (jenis){
-						 	return $http.get('<?=base_url()?>index.php/c_informasi/getContentInformasi/' + jenis);						 
+						 	return $http.get('<?=base_url()?>index.php/service/c_informasi/getContentInformasi/' + jenis);						 
 						 };
 						 return {getContent: getContent};
 

@@ -23,10 +23,11 @@ class m_video extends CI_Model implements i_crud{
 	}
 	
 	public function read(){		
-		$offset 		= ($this->uri->segment(4)) ? $this->uri->segment(4)*5 : $this->uri->segment(3)*5;
-		$limit			= $offset - 5;
-		$query = $this->db->get('video', $offset, $limit);
-		return $query;
+		$offset 				= ($this->uri->segment(4)) ? $this->uri->segment(4)*5 : $this->uri->segment(3)*5;
+		$limit					= $offset - 5;
+		$result['total']		= $this->db->get('video');
+		$result['query ']	= $this->db->get('video', $offset, $limit);
+		return $result;
 	}
 	
 	public function delete(){		

@@ -7,7 +7,7 @@
 <link href="<?=base_url()?>bootstrap/css/bootstrap.css" rel="stylesheet">
 
 <script type="text/javascript" src="<?=base_url()?>angular/angular.js"></script>
- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-animate.js"></script>
+ <script src="<?=base_url()?>angular/angular-animate.js"></script>
 <script src="<?=base_url()?>jquery/jquery.min.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/app.js"></script>
 <script type="text/javascript" src="<?=base_url()?>bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>

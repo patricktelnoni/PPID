@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 require_once dirname(__FILE__).'/c_konten.php';
+//require_once dirname(__FILE__).'/../../abstraction/private_abstraction.php';
 
 class c_informasi extends c_konten{ 
 	
@@ -9,27 +10,57 @@ class c_informasi extends c_konten{
 		parent:: __construct();
 		
 		//$private->loginCheck();
-		$this->load->model(array('m_informasi', 'm_artikel', 'm_konten'));
+		$this->load->model('m_informasi');
+		
 		$this->load->helper('string');
 	}
 	public function index()
 	{		
-	
+		$data = array();
+		
+		$info = $this->m_informasi->read();
+		
+		$i=0;
+		foreach ($info['query']->result_array() as $row)
+		{
+			$data[$i]['infoid']	= $row['infoid'];
+			$data[$i]['judul'] 	= $row['judul'];
+			$data[$i]['isi'] 		= $row['isi'];
+			$data[$i]['link']		= base_url().$row['file'];
+				
+			$i++;
+		}
+		
+		$total		= $info['total']->num_rows();
+		
+		$result = array('total' 		=> $total,
+				'content'	=> $data);
+		echo json_encode($result);
 	}	
 	
 	public function listcontent()
-	{
+	{		
 		$data = array();
 		
-		$page['header']	= 'header';
-		$page['left']	= '';
-		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer';
-		$page['body']	= '/informasi/listinformasi';
-		$page['page']	= 'index';	
-						
+		$info = $this->m_informasi->read();	
+		//print_r($info);
+		$i=0;		
+	 	foreach ($info['query']->result_array() as $row)
+		{	
+			$data[$i]['infoid']	= $row['infoid'];
+			$data[$i]['judul'] 	= $row['judul'];
+			$data[$i]['isi'] 		= $row['isi'];
+			$data[$i]['link']		= base_url().$row['file'];
+			
+			$i++;
+		}		
+				
+		$total		= $info['total']->num_rows();
 		
-		parent::loadPage($page);
+		$result = array('total' 		=> $total,
+				'content'	=> $data);
+		echo json_encode($result);
+		
 	}
 	
 	public function attach(){
