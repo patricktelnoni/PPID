@@ -20,7 +20,7 @@
           <img src="{{row.background}}" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1><a href="<?=base_url().'index.php/c_artikel/read/{{row.id}}'?>">{{row.title}}</a></h1>
+              <h1><a href="<?=base_url().'index.php/c_artikel/read/{{row.artikelid}}'?>">{{row.judul}}</a></h1>
               <p>{{row.content}}.</p>
               
             </div>
@@ -40,19 +40,20 @@
 					<script type="text/javascript">
 					
 					//var app = angular.module('ppid', []);					 
-					app.controller('LoopController', function($scope) {
-						 $scope.items = [
-						<?php
-						 $i=0; 
-						foreach($content as $key )
-						{ ?>
-						 {title: '<?=$key['judul']?>' , content: '<?=strip_tags($key['isi'])?>', id: <?=$key['artikelid']?>, background:'<?=$key['background']?>'}
-						 <?php					 
-								 if($i != $total-1)
-								 	{echo ", \n";}					 
-								 $i++;						
-								}?>				 
-					 ];				
+					app.controller('LoopController', function($scope, $http) {
+						$scope.url		= '<?=base_url()?>index.php/service/c_artikel/fetch/';
+						 $scope.items = [];
+						 fetch(1);
+							
+							function fetch(page){
+								$http.get($scope.url+page).then(function(response) {
+								           	//$scope.items			= response.data.content; 
+								           	$scope.totalItems 	= response.data.total;
+								           	angular.copy(response.data, $scope.items)
+								}
+								           	);
+								
+							}				
 			 	});
 				 	app.controller('tabs', function($scope){
 

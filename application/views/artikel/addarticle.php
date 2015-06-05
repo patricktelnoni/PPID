@@ -47,7 +47,7 @@
 				
 		<form ng-controller="formController"   method="post" id="myAwesomeDropzone" class="dropzone fallback dz-clickable"
 			enctype="multipart/form-data" accept-charset="utf-8" 
-			action="<?=base_url()?>index.php/admin/c_artikel/save" style="padding-top: 10%; width:100%;">
+			action="<?=base_url()?>index.php/service/admin/c_artikel/save" style="padding-top: 10%; width:100%;">
 			<table>
 						
 				<tr>

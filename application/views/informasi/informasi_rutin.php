@@ -39,12 +39,12 @@
 						
 						 
 							$scope.pageChanged = function() {            
-								 fetch('<?=base_url()?>index.php/service/c_informasi/getContentInformasi/'+ $scope.currentPage + '/'+ $scope.info);
+								 fetch('<?=base_url()?>index.php/service/c_informasi/getContentInformasi/'+ $scope.info + '/'+ $scope.currentPage);
 							 }
 						 
 					}).factory('refreshContent', function($http){
 						var getContent =  function (jenis){
-						 	return $http.get('<?=base_url()?>index.php/service/c_informasi/getContentInformasi/' + jenis);						 
+						 	return $http.get('<?=base_url()?>index.php/service/c_informasi/getContentInformasi/' + $scope.info + '/'+ jenis);						 
 						 };
 						 return {getContent: getContent};
 

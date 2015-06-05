@@ -68,7 +68,7 @@ class m_informasi extends CI_Model implements i_crud{
 	
 	public function readInfo($jenis = "", $lim)
 	{
-		$parent = $this->uri->segment(4)? $this->getParent($this->uri->segment(4)): "";
+		$parent = $this->uri->segment(4) ? $this->getParent($this->uri->segment(4)): "";
 		if($jenis != ""){
 			$idmin	= $this->db->select_min('idtipe', 'idmin')->from('info')->where('jenis', $jenis)->get()->row()->idmin;
 			$idmax	= $this->db->select_max('idtipe', 'idmax')->from('info')->where('jenis', $jenis)->get()->row()->idmax;
@@ -82,7 +82,7 @@ class m_informasi extends CI_Model implements i_crud{
 			 $this->db->where('info.parent <=', $idmax);				
 		}
 		else{		
-			$this->db->where('info.parent', $parent);
+			$this->db->where(array('info.parent'=> $parent, 'info.jenis' => (int)$this->uri->segment(4)));
 		}
 		
 		if($lim)

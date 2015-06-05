@@ -31,7 +31,7 @@ class c_artikel extends public_abstraction{
 			$data['content'][$i]['artikelid']		= $row['artikelid'];
 			$data['content'][$i]['judul'] 			= $row['judul'];
 			$data['content'][$i]['isi'] 				= $row['isi'];
-			$data['content'][$i]['background'] 	= base_url().$row['background'];
+			$data['content'][$i]['background'] 	= $row['background'];
 			
 			$i++;
 		} 
@@ -45,23 +45,7 @@ class c_artikel extends public_abstraction{
 	{
 		print_r($_FILES);
 	}
-	public function save()
-	{		
-		//print_r($_POST);
-		//echo $_FILES[];
-		//print_r($_FILES['uploadFile']['name']);
-		/* $data = array(
-				'penulis'	=> $this->session->userdata('username'),				
-				'isi'			=> $this->input->post('isi'),
-				'judul'		=> $this->input->post('judul')
-		);
-		if($this->input->post('id') == '')
-			$this->m_artikel->create($data);
-		else
-			$this->m_artikel->update($data);
-		
-		redirect('c_artikel'); */
-	}
+
 	
 	public function read()
 	{
@@ -72,9 +56,8 @@ class c_artikel extends public_abstraction{
 		$page['body']		= 'artikel/artikel_read';
 		$page['page']		= 'index';
 		
-		$artikel['content'] = $this->m_artikel->read();
 		
-		parent::loadPage(array_merge($page, $artikel));
+		parent::loadPage($page);
 	}
 
 	

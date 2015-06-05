@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost:8000/';
+$config['base_url']	= 'http://ppid.bontangkota.go.id/';
 
 /*
 |--------------------------------------------------------------------------

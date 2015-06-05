@@ -21,12 +21,6 @@ class c_artikel extends c_konten{
 	{
 		$data = array();
 		
-		$page['header']	= 'header';
-		$page['left']	= '';
-		$page['right']	= 'menukanan';
-		$page['footer']	= 'footer';
-		$page['body']	= '/artikel/listartikel';
-		$page['page']	= 'index';
 		
 		$artikel = $this->m_artikel->read();
 		
@@ -38,16 +32,13 @@ class c_artikel extends c_konten{
 			$data['content'][$i]['artikelid']	= $row['artikelid'];
 			$data['content'][$i]['author']		= $row['penulis'];
 			$data['content'][$i]['judul'] 		= $row['judul'];
-			$data['content'][$i]['isi'] 			= $row['isi'];
+			$data['content'][$i]['isi'] 			= strip_tags($row['isi']);
 		
 			$i++;
 		}
 		$data['total']		= $artikel->num_rows();
 				
-		if($artikel->num_rows() > 0)
-			parent::loadPage(array_merge($page, $data));
-		else 
-			parent::loadPage($page);
+		echo json_encode($data);
 	}
 	
 	

@@ -7,9 +7,27 @@
 				<div class="slideshow">
 					<script type="text/javascript">
 
-					app.controller('listInformasi', function(refreshContent, $scope) {
-						$scope.menu = <?php echo file_get_contents(base_url().'index.php/service/c_menu/getSideMenu/1'); ?>;
+					app.controller('listInformasi', function(refreshContent, $scope, $http) {
+						$scope.urlmenu 	= '<?=base_url()?>index.php/service/c_menu/getSideMenu/1';
+						$scope.urlmain		= '<?=base_url()?>index.php/service/c_informasi/getContentInformasi/1';
+
+						$scope.menu = [];
+						$scope.items = [];
+						fetch($scope.urlmenu, $scope.menu);
+						fetch($scope.urlmain, $scope.items);
+						
+						function fetch(url, data){
+							$http.get(url).then(function(response) {
+							           	//$scope.items			= response.data.content; 
+							           	$scope.totalItems 	= response.data.total;
+							           	if(url == $scope.urlmain)
+								           	angular.copy(response.data.content, data);
+							           	if(url == $scope.urlmenu)									           	
+							           		angular.copy(response.data, data);              
+							          	});
+						}		
 						$scope.reloadContent = function(detil){
+							$scope.info = detil;
 							refreshContent.getContent(detil).then(function(response){
 						        $scope.items = response.data;
 						    }, function(error){
@@ -18,10 +36,12 @@
 							//alert(detil);
 							};
 						
-						 $scope.items = [];				
+							$scope.pageChanged = function() {            
+								 fetch('<?=base_url()?>index.php/service/c_informasi/getContentInformasi/'+ $scope.info + '/'+ $scope.currentPage);
+							 }				
 					}).factory('refreshContent', function($http){
 						var getContent =  function (jenis){
-						 	return $http.get('<?=base_url()?>index.php/service/c_informasi/getContentInformasi/' + jenis);						 
+						 	return $http.get('<?=base_url()?>index.php/service/c_informasi/getContentInformasi/' + $scope.info + '/'+ jenis);						 
 						 };
 						 return {getContent: getContent};
 
@@ -31,7 +51,7 @@
 				 </div>
 				 
 <div class="row" ng-controller='listInformasi'>
-			
+			<input type="hidden" ng-model="info">
 	<div class="tabbable tabs-left col-sm-3 ">
 	<div id='cssmenu'>
 	<ul class="nav nav-tabs nav-stacked nav-pills" role="tablist" >  
@@ -57,6 +77,7 @@
 	    </div>
               <!-- <h2>{{row.judul}}</h2>              
               <p><a class="btn btn-default" href="{{row.link}}" role="button">Link sedotnya gan</a></p> -->
-     </div>         
+     </div>    
+     <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="10"></pagination>     
 	</div>
    </div>
