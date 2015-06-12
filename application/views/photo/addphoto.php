@@ -29,35 +29,78 @@
 		<form ng-controller="formController"   method="post" id="myAwesomeDropzone" class="dropzone fallback dz-clickable"
 			enctype="multipart/form-data" accept-charset="utf-8" 
 			action="<?=base_url()?>index.php/admin/c_foto/save/<?=$token?>" style="padding-top: 10%; width:100%;">
-			<table style="width:90%;">					
-				<tr>
-					<td class="col-md-2 "><label class="control-label">Album</label></td>
-	          		<td class="col-md-6"><div >
-	               		<input style="width:60%;" type="text" ng-model="album"  name="album" class="form-control" value=""/><br>           
-	          		</div></td>  			
-	  			</tr>
-	  			
-	  			<tr id="file">
-	  				<td class="col-md-2 "><label class=" control-label">Foto</label></td>
-			  		<td style="height: 400 px;">
-			  						  		  
-				  		<div >
+			<div class="col-lg-14">
+        		<div class="col-lg-8 form-group">
+        
+                </div>
+                <div class="col-lg-8 form-group">
+                   <div class="col-md-3"> <label for="InputName">Nama</label></div>
+                   
+                    <div class="col-lg-8 input-group">
+                        <input style="width:60%;" type="text" ng-model="album"  name="album" class="form-control" value=""/><br>
+                        
+                    </div>
+                   
+                </div>
+                <div class="col-lg-8 form-group">
+                    <div class="col-md-3"><label for="InputEmail"> Foto</label></div>
+                    <div class="col-lg-8 input-group">                        
 						  	<div class="dz-message dz-preview" style="width: 100%;  border: 2px; border-style: dashed; border-color: #808080;" data-dz-message>
 						  		<span>Drop <i>file</i> di sini atau Klikk </span>
-						  	</div>
-						    		    
-						  </div>
-					</td>
-				</tr>	  			
-	  			<tr>  			
-	  				<td class="col-md-1 "> <button type="submit" class="btn btn-success">Simpan</button></td>  				
-	  			</tr>
-	  		</table>  		
+						  	</div>						    		    
+						
+                    </div>
+                <div class="table table-striped" class="files" id="previews">
+ 
+  <div id="template" class="file-row">
+    <!-- This is used as the file preview template -->
+    <div>
+        <span class="preview"><img data-dz-thumbnail /></span>
+    </div>
+    <div>
+        <p class="name" data-dz-name></p>
+        <strong class="error text-danger" data-dz-errormessage></strong>
+    </div>
+    <div>
+        <p class="size" data-dz-size></p>
+        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+        </div>
+    </div>
+    <div>
+      <button class="btn btn-primary start">
+          <i class="glyphicon glyphicon-upload"></i>
+          <span>Start</span>
+      </button>
+      <button data-dz-remove class="btn btn-warning cancel">
+          <i class="glyphicon glyphicon-ban-circle"></i>
+          <span>Cancel</span>
+      </button>
+      <button data-dz-remove class="btn btn-danger delete">
+        <i class="glyphicon glyphicon-trash"></i>
+        <span>Delete</span>
+      </button>
+    </div>
+  </div>
+ 
+</div>
+                </div>
+                
+                   <div class="col-lg-8 form-group">
+                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-left" style="margin-left: 150px;">
+                </div> 
+            </div>
+            
+					
   		</form>  		
   		<script type="text/javascript" src='<?=base_url()?>dropzone/dropzone.js '></script>
 		<script type="text/javascript">
 		//Dropzone.autoDiscover = false;
 		var u = window.location.hostname; 
+		var previewNode = document.querySelector("#template");
+		previewNode.id = "";
+		var previewTemplate = previewNode.parentNode.innerHTML;
+		previewNode.parentNode.removeChild(previewNode);
 
 		//Dropzone.prototype.defaultOptions = {
 		  
@@ -70,6 +113,7 @@
 				  parallelUploads		: 100,
 				  maxFiles				: 100,
 				  //acceptedFiles		: 'application/pdf',
+				  previewsContainer: "#previews",
 				  addRemoveLinks		: true,
 				  removedfile			: function(file) {
 					  $.ajax({

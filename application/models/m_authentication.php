@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once '/interface/i_crud.php';
+require_once dirname(__FILE__).'/interface/i_crud.php';
 
 class m_authentication extends CI_Model implements i_crud{
 

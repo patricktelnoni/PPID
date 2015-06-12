@@ -27,7 +27,7 @@ class c_foto extends c_konten{
 		$page['left']	= '';
 		$page['right']	= 'menukanan';
 		$page['footer']	= 'footer';
-		$page['body']	= '/informasi/listkonten';
+		$page['body']	= '/photo/listphoto';
 		$page['page']	= 'index';
 		
 		$artikel = $this->m_artikel->read();		

@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once '/abstraction/public_abstraction.php';
+require_once dirname(__FILE__).'/abstraction/public_abstraction.php';
 
 class c_registration extends public_abstraction {
 

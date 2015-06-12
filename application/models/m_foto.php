@@ -20,16 +20,32 @@ class m_foto extends CI_Model implements i_crud{
 	public function read(){
 		/* $sql = "SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?";
 		$this->db->query($sql, array(3, 'live', 'Rick')); */
-		$albumid = $this->uri->segment(4) != ''? $this->uri->segment(4): '';		
+		if($this->uri->segment(5))
+		{
+			$albumid = '';
+			$offset 	=	$this->uri->segment(5) ? ($this->uri->segment(5) -1)*10 : "0";
+			$limit		=	10 ;
+			
+			$sql = $this->db->get('album', $limit, $offset);
+		}
+		elseif($this->uri->segment(3) == 'listalbum'){
+			$albumid = '';
+			$offset 	=	$this->uri->segment(4) ? ($this->uri->segment(4) -1)*10 : "0";
+			$limit		=	10 ;
+			
+			$sql = $this->db->get('album', $limit, $offset);
+		}
+		else{
+			$albumid = $this->uri->segment(4) != ''? $this->uri->segment(4): '';
+			
+			$sql = $this->db->get_where('album', array('albumid' => $albumid));
+		}				
 		
-		$sql = $albumid != '' ? $this->db->get_where('album', array('albumid' => $albumid)) : $this->db->get('album');
-				
-		//print_r($sql);
 		return $sql; 
 	}
 	
 	public function delete(){		
-		$query = $this->db->delete('artikel', array('artikelid' => $this->uri->segment(3)));
+		$query = $this->db->delete('artikel', array('artikelid' => $this->uri->segment(5)));
 	}
 	
 	public function postAttachment($path, $thumbs)
@@ -59,7 +75,7 @@ class m_foto extends CI_Model implements i_crud{
 	
 	public function fetchalbum()
 	{
-		$sql = $this->db->get_where('foto', array('albumid' => $this->uri->segment(3)));
+		$sql = $this->db->get_where('foto', array('albumid' => $this->uri->segment(4)));
 		
 		return $sql;
 	}

@@ -2,7 +2,7 @@
 <script type="text/javascript">
 
 app.controller('listalbum', function($scope, $http, $sce) {		
-	$scope.url 				= "<?=base_url()?>index.php/c_foto/listalbum/";
+	$scope.url 				= "<?=base_url()?>index.php/service/c_foto/listalbum/";
 	$scope.items			= [];
 
 	  			                
@@ -41,7 +41,7 @@ app.controller('listalbum', function($scope, $http, $sce) {
     /* ensure visibility during the transition */
     display: block !important; /* yes, important */
 }
-.caption {
+.fade-in-out {
     position				:absolute;
     top					:0;
     right					:0;
@@ -56,19 +56,21 @@ app.controller('listalbum', function($scope, $http, $sce) {
      
 }
 
-.caption .cssFade {
-    transition: 0.5s linear all;
-    opacity: 1;
+.fade-in-out{
+	-webkit-transition: .5s linear all; /* Chrome */
+	transition: .5s linear all;
+	opacity: 0;
 }
-.caption .cssFade.ng-hide {
-    opacity: 0;
+ 
+.fade-in-out:hover {
+	opacity: 1;
 }
 </style>
 <div class="row" ng-controller="listalbum" id="feature">
-  <div class="col-sm-3 feature" ng-repeat="album in items">
+  <div class="col-sm-3 feature" ng-repeat="album in items" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
     <div class="thumbnail" ng-mouseover="fadein()" ng-mouseleave="fadeout()">
     
-    <div class="caption cssFade" ng-show="caption">
+    <div class="fade-in-out" ng-show="caption">
                     <h4>{{album.nama}}</h4>
                     
                     <p><a  href="<?=base_url()?>index.php/c_foto/viewAlbum/{{album.albumid}}" 

@@ -1,5 +1,5 @@
 <?php echo $this->session->flashdata('message');?>
-		<?php $row = $content->row();?>
+		
 			<script type="text/javascript">
 			app.controller('data', function($scope, $http) {
 						$scope.url		= '<?=base_url()?>index.php/service/c_artikel/fetch/read/<?=$this->uri->segment(3)?>';

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require_once dirname(__FILE__).'/abstraction/public_abstraction.php';
+require_once dirname(__FILE__).'/../abstraction/public_abstraction.php';
 class c_foto extends public_abstraction{ 
 	
 	private $pa;
@@ -12,11 +12,12 @@ class c_foto extends public_abstraction{
 		$this->load->helper(array('url', 'captcha'));
 		$this->load->library('session');
 		$this->load->model('m_foto');
-	}
+	}	
 	
-
 	public function listalbum()
 	{
+		
+		$data =array();
 		$album 				= $this->m_foto->read();
 		
 		$i=0;
@@ -25,13 +26,11 @@ class c_foto extends public_abstraction{
 			$data[$i]['albumid']	= $row['albumid'];
 			$data[$i]['nama'] 		= $row['nama'];
 			
-			$foto = $this->m_foto->getFoto($row['albumid']);
-			
+			$foto = $this->m_foto->getFoto($row['albumid']);			
 			$res = $foto->row();
 			
-				$data[$i]['fotoid']	= $res->fotoid;
-				$data[$i]['path']	= base_url().$res->path;
-			
+			$data[$i]['fotoid']	= $res->fotoid;
+			$data[$i]['path']	= base_url().$res->path;	
 			
 			$i++;
 		}
@@ -52,7 +51,7 @@ class c_foto extends public_abstraction{
 		foreach ($foto->result_array() as $row)
 		{
 			$data[$i]['fotoid']		= $row['fotoid'];			
-			$data[$i]['url']		= base_url().$row['path'];			
+			$data[$i]['url']			= base_url().$row['path'];			
 			$data[$i]['thumbUrl']	= base_url().$row['thumbs'];
 				
 			$i++;
@@ -60,8 +59,8 @@ class c_foto extends public_abstraction{
 		$total		= $foto->num_rows();
 	
 		$result = array(	
-						'total'		=>		$total,
-						'content'	=>		$data);
+						'total'		=>	 $total,
+						'content'	=>	 $data);
 	
 		echo json_encode($result);
 	}

@@ -32,35 +32,7 @@ class c_foto extends public_abstraction{
 	{
 		
 	}
-
-	public function listalbum()
-	{
-		$album 				= $this->m_foto->read();
 		
-		$i=0;
-		foreach ($album->result_array() as $row)
-		{
-			$data[$i]['albumid']	= $row['albumid'];
-			$data[$i]['nama'] 		= $row['nama'];
-			
-			$foto = $this->m_foto->getFoto($row['albumid']);
-			
-			$res = $foto->row();
-			
-				$data[$i]['fotoid']	= $res->fotoid;
-				$data[$i]['path']	= base_url().$res->path;
-			
-			
-			$i++;
-		}
-		$total		= $album->num_rows();
-		
-		$result = array(	'total'		=>		$total,
-								'content'	=>		$data);
-		
-		echo json_encode($result);		
-	}	
-	
 	public function viewAlbum()
 	{
 		$data = array();		
@@ -74,28 +46,6 @@ class c_foto extends public_abstraction{
 				
 		
 		parent::loadPage($page);
-	}
+	}	
 	
-	public function listfoto()
-	{
-		$data		= array();
-		$foto		= $this->m_foto->fetchalbum();	
-		$i			= 0;
-		
-		foreach ($foto->result_array() as $row)
-		{
-			$data[$i]['fotoid']		= $row['fotoid'];			
-			$data[$i]['url']		= base_url().$row['path'];			
-			$data[$i]['thumbUrl']	= base_url().$row['thumbs'];
-				
-			$i++;
-		}
-		$total		= $foto->num_rows();
-	
-		$result = array(	
-						'total'		=>		$total,
-						'content'	=>		$data);
-	
-		echo json_encode($result);
-	}
 }

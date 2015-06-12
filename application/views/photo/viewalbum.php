@@ -2,11 +2,11 @@
 <script type="text/javascript">
 
 app.controller('listfoto', function($scope, $http, Lightbox) {		
-	$scope.url 				= "<?=base_url()?>index.php/c_foto/listfoto/";
+	$scope.url 				= "<?=base_url()?>index.php/service/c_foto/listfoto/";
 	$scope.items			= [];
 
 	var menu = window.location.pathname.split("/");                
-	fetch(3);        
+	fetch(<?=$this->uri->segment(3)?>);        
 			        
 	function fetch(page){
 		$http.get($scope.url+page).then(function(response) {
@@ -35,6 +35,22 @@ app.controller('listfoto', function($scope, $http, Lightbox) {
 });
 
 </script>
+<<style>
+<!--
+#gallery {
+  padding: 0;
+  margin-left: 30px;
+}
+
+#gallery li {
+  display: inline-block;
+  margin: 0 1em 1em 0;
+  width: 10em;
+  list-style-type: none;
+  text-align: center;
+}
+-->
+</style>
 <div class="contentMain" style="padding-top:5%;">		
 				<div class="slideshow"
 					
